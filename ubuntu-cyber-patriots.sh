@@ -927,6 +927,22 @@ then
   apt purge samba
 fi
 
+# Removes Telnet
+echo "Are you using Telnet? Y/N"
+read -r yn
+if [[ "$yn" = "n" ]] || [[ "$yn" = "N" ]]
+then
+  apt purge telnet
+fi
+
+# Removes Netcat
+echo "Are you using Netcat? Y/N"
+read -r yn
+if [[ "$yn" = "n" ]] || [[ "$yn" = "N" ]]
+then
+  apt purge netcat
+fi
+
 # Secure SSH Server
 secure_ssh
 
@@ -937,5 +953,8 @@ change_groups
 apt-get linux-image-generic
 
 apt autoremove
+
+echo "This device needs to reboot to save changes"
+echo "Rebooting..."
 
 reboot
