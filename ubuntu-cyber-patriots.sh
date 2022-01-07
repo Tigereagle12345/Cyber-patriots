@@ -796,7 +796,7 @@ clamav() {
 updates
 apt install clamav
 freshclam
-cd ~
+cd ~ && echo "Current directory switched to home"
 mkdir Infected_Files
 gnome-terminal --tab -- bash -c "clamscan -r --move=Infected_Files /"
 echo "ClamAV is being run in another terminal window, this may take some time"
