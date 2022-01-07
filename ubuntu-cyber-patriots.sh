@@ -97,7 +97,10 @@ pass_encrypt() {
 awk '{if (/ remember=5/) {$0=$0 " sha512"}; print}' /etc/pam.d/common-password > pass_encrypt_config
 cp pass_encrypt_config /etc/pam.d/common-password
 rm pass_encrypt_config
-echo "Password Encryption Set To sha512"
+echo "Password Encryption Set to sha512"
+
+# Ensure all passwords are encrypted
+sed -e 's/^\([a-zA-Z0-9_]*\):[^:]*:/\1:x:/' -i /etc/passwd
 }
 
 pass_lockout() {
@@ -401,12 +404,56 @@ permissions() {
 rm /etc/at.deny
 touch /etc/at.allow
 chmod g-wx,o-rwx /etc/at.allow
-chown root:root /etc/at.allow 
+chown root:root /etc/at.allow
+
+# Configures permissions for /etc/passwd file
+chown root:root /etc/passwd
+chmod u-x,go-wx /etc/passwd
+
+# Configures permissions for /etc/passwd- file
+chown root:root /etc/passwd-
+chmod u-x,go-wx /etc/passwd-
+
+# Configures permissions for /etc/group file
+chown root:root /etc/group
+chmod u-x,go-wx /etc/group
+
+# Configures permissions for /etc/group- file
+chown root:root /etc/group-
+chmod u-x,go-wx /etc/group-
+
+# Configures permissions for /etc/shadow file
+chmod u-x,g-wx,o-rwx /etc/shadow
+
+# Configures permissions for /etc/shadow- file
+chmod u-x,g-wx,o-rwx /etc/shadow-
+
+# Configures permissions for /etc/gshadow file
+chmod u-x,g-wx,o-rwx /etc/gshadow
+
+# Configures permissions for /etc/gshadow- file
+chmod u-x,g-wx,o-rwx /etc/gshadow-
+
+# Configures permissions for the shadow group
+ sed -ri 's/(^shadow:[^:]*:[^:]*:)([^:]+$)/\1/' /etc/grou
+
+# Disables USB's
 chown 000 /media/
 
+# Configures sudo account permissions
 (cat /etcsudodoers/ ; echo "Defaults use_pty") > sudo_conf
 cp sudo_conf /etc/sudodoers
 rm sudo_conf
+
+# Configures use of su command
+groupadd sugroup
+(cat /etc/pam.d/su ; echo "auth required pam_wheel.so use_uid group=sugroup") > su_conf
+cp su_conf /etc/sudodoers
+rm su_conf
+
+# Configures root account permissions
+passwd -l root
+usermod -g 0 root
 }
 
 fail2ban() {
@@ -795,9 +842,8 @@ echo "Programs running..."
 apt install nano
 apt install tree
 
-# Runs updates
+# Runs all Functions
 updates
-
 enable_ufw
 enable_audit
 fail2ban
@@ -820,10 +866,6 @@ clamav
 # Updates Firefox
 apt-get update
 apt-get install firefox
-
-# Disables the root account
-passwd -l root
-usermod -g 0 root
 
 # Removes unwanted programs and files
 rm /etc/motd
@@ -848,7 +890,6 @@ then
   done
 fi
 
-
 # Remove Files
 ls -A
 echo "Do you want to delete any files? Y/N"
@@ -864,7 +905,6 @@ then
     read -r yn
   done
 fi
-
 
 # Remove Users
 cut -d: -f1 /etc/passwd
@@ -883,7 +923,7 @@ then
 fi
 
 # Change Passwords
-passwd -Sa
+cut -d: -f1 /etc/passwd
 echo "Do you want to change any users passwords? Y/N"
 read -r yn
 if [[ "$yn" = "y" ]] || [[ "$yn" = "Y" ]]
