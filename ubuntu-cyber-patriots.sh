@@ -793,15 +793,9 @@ sysctl -w net.ipv4.route.flush=1
 }
 
 clamav() {
-updates
-apt install clamav
-freshclam
-cd ~ && echo "Current directory switched to home"
-mkdir Infected_Files
-gnome-terminal --tab -- bash -c "clamscan -r --move=Infected_Files /"
-echo "ClamAV is being run in another terminal window, this may take some time"
+./Cyber-patriots/clamav.sh &
+echo "ClamAV is being run in the background, this may take some time..."
 echo "Infected files will be moved to the directory Infected_Files"
-proceed
 }
 
 updates() {
