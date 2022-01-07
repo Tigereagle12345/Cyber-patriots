@@ -656,7 +656,7 @@ fi
 }
 
 aide() {
-./Cyber-patriots/aide.sh &
+bash ./Cyber-patriots/aide.sh &
 }
 
 boot() {
@@ -773,7 +773,7 @@ sysctl -w net.ipv4.route.flush=1
 }
 
 clamav() {
-./Cyber-patriots/clamav.sh &
+bash ./Cyber-patriots/clamav.sh &
 echo "ClamAV is being run in the background, this may take some time..."
 echo "Infected files will be moved to the directory Infected_Files"
 proceed
@@ -937,5 +937,7 @@ change_groups
 
 # Secures Kernel
 apt-get linux-image-generic
+
+apt autoremove
 
 reboot
