@@ -2,13 +2,13 @@
 
 ##############################################
 
-Eamon O'Leary's Cyber Patriot Script -Ubuntu Linux-
-
-IMPORTANT:
-
-FOR USE OF TEAM 4347 ONLY!!!
-
-This script was designed for Ubuntu Linux and will likely not work on other flavors of linux
+# Eamon O'Leary's Cyber Patriot Script -Ubuntu Linux-
+#
+# IMPORTANT:
+#
+# FOR USE OF TEAM 14-4347 ONLY!!!
+#
+# This script was designed for Ubuntu Linux and will likely not work on other flavors of linux
 
 ##############################################
 
