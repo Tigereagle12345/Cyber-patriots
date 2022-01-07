@@ -2,13 +2,32 @@
 
 ##############################################
 
-# Eamon O'Leary's Cyber Patriot Script -Ubuntu Linux-
+# Tigereagle12345's Cyber Patriot Script -Ubuntu Linux-
 #
 # IMPORTANT:
 #
 # FOR USE OF TEAM 14-4347 ONLY!!!
 #
-# This script was designed for Ubuntu Linux and will likely not work on other flavors of linux
+# Note:
+#
+# This script was designed to be run as an administrator on Ubuntu Linux and may not work if not run this way
+# The default password for the script (The one it sets passwords as) is q^yRpNgbes2wM*xR
+
+banner="
+ _________    __    __    ______     _______     ______           ______        ____         __________       ______
+|    _____|   \ \  / /   |      |   |   ____|   |      |         |      |      /    \       |___    ___|     /  __  \
+|   |          \ \/ /    |  []   |  |  |___     |  []  |         |  []  |     /  []  \          |  |        |  |  |  |
+|   |           |  |     |      |   |   ___|    |      |         |   ___|    /   __   \         |  |        |  |  |  |
+|   |_____      |  |     |  []   |  |  |____    |  |\  \         |  |       /   /  \   \        |  |        |  |__|  |
+|_________|     |__|     |______|   |_______|   |__| \__\        |__|      /___/    \___\       |__|         \______/
+
+ ___     ___     _______     ___     ___      _________
+|   |   |   |   |____   |   |   |   |   |    |_____    /
+|   |___|   |    ____|  |   |   |___|   |         /   /
+|_______    |   |____   |   |_______    |        /   /
+        |   |    ____|  |           |   |       /   /
+        |___|   |_______|           |___|      /___/
+"
 
 ##############################################
 
@@ -365,6 +384,7 @@ rm /etc/at.deny
 touch /etc/at.allow
 chmod g-wx,o-rwx /etc/at.allow
 chown root:root /etc/at.allow 
+chown 000 /media/
 
 (cat /etcsudodoers/ ; echo "Defaults use_pty") > sudo_conf
 cp sudo_conf /etc/sudodoers
