@@ -814,6 +814,8 @@ apt dist-upgrade -y
 
 # Code
 
+echo "$banner"
+
 echo "Programs running..."
 
 # Installs tools
