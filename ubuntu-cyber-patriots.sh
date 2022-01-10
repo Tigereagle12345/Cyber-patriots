@@ -778,7 +778,8 @@ aa-enforce /etc/apparmor.d/*
 }
 
 gui() {
-  (cat /etc/gdm3/greeter.dconf-defaults ; echo " [org/gnome/login-screen]
+# Disables Username list on startup
+(cat /etc/gdm3/greeter.dconf-defaults ; echo " [org/gnome/login-screen]
 
 banner-message-enable=true 
 banner-message-text= 'User List Diabled'
@@ -791,6 +792,14 @@ dpkg-reconfigure gdm3
 awk '!/Enable=true/' /etc/gdm3/custom.conf > gui_conf
 cp gui_conf /etc/gdm3/custom.conf
 rm gui_conf
+
+# Removes the message of the day to avoid displaying sensitive information
+rm /etc/motd
+
+# Configures remote desktop warning banner to avoid displaying sensitive information
+echo "Authorized uses only. All activity may be monitored and reported." >
+/etc/issue.net
+
 }
 
 rm_services() {
