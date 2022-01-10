@@ -205,6 +205,14 @@ grep -Els "^\s*net\.ipv4\.ip_forward\s*=\s*1" /etc/sysctl.conf /etc/sysctl.d/*.c
 
 echo "IP Forwarding Disabled"
 
+# Disables ipv6
+awk '/GRUB_CMDLINE_LINUX/ {print;print "GRUB_CMDLINE_LINUX="ipv6.disable=1"";next}1'  > ip_conf
+cp ip_conf
+rm ip_conf
+
+update-grub
+
+# Makes sure suspicious packets are logged
 log_sus_packets
 echo "Logging of Suspicious Packets Enabled"
 
@@ -797,23 +805,21 @@ rm gui_conf
 rm /etc/motd
 
 # Configures remote desktop warning banner to avoid displaying sensitive information
-echo "Authorized uses only. All activity may be monitored and reported." >
-/etc/issue.net
+echo "Authorized uses only. All activity may be monitored and reported." > /etc/issue.net
 
 sed -e 's:\m:|\r|\s\|\v:)::g' /etc/issue.net
 cp gui_conf /etc/issue.net
 rm gui_conf
 
 # Configures warning banner to avoid displaying sensitive information
-echo "Authorized uses only. All activity may be monitored and reported." >
-/etc/issue
+echo "Authorized uses only. All activity may be monitored and reported." > /etc/issue
 
 sed -e 's:\m:|\r|\s\|\v:)::g' /etc/issue
 cp gui_conf /etc/issue
 rm gui_conf
 }
 
-rm_services() {
+rm_service() {
 lsof -i -P -n | grep -v "(ESTABLISHED)"
 echo "Do you wish to remove any of these services? y/n"
 read -r yn
@@ -1019,7 +1025,7 @@ if [[ "$yn" = "y" ]] || [[ "$yn" = "Y" ]]
 then
  while [[ "$yn" = "y" ]] || [[ "$yn" = "Y" ]]
  do
-  rm_service()
+    rm_service
  done
 fi
 
