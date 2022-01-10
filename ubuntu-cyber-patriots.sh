@@ -440,6 +440,12 @@ chmod u-x,g-wx,o-rwx /etc/gshadow-
  sed -ri 's/(^shadow:[^:]*:[^:]*:)([^:]+$)/\1/' /etc/grou
 
 # Disables USB's
+(cat /etc/modprobe.d/usb_storage.conf ; echo "install usb-storage /bin/true") > usb_conf
+cp usb_conf /etc/modprobe.d/usb_storage.conf
+rm usb_conf
+
+rmmod usb-storage
+
 chown 000 /media/
 
 # Configures sudo account permissions
