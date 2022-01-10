@@ -803,6 +803,14 @@ echo "Authorized uses only. All activity may be monitored and reported." >
 sed -e 's:\m:|\r|\s\|\v:)::g' /etc/issue.net
 cp gui_conf /etc/issue.net
 rm gui_conf
+
+# Configures warning banner to avoid displaying sensitive information
+echo "Authorized uses only. All activity may be monitored and reported." >
+/etc/issue
+
+sed -e 's:\m:|\r|\s\|\v:)::g' /etc/issue
+cp gui_conf /etc/issue
+rm gui_conf
 }
 
 rm_services() {
