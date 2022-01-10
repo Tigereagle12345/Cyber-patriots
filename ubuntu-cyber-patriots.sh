@@ -800,6 +800,9 @@ rm /etc/motd
 echo "Authorized uses only. All activity may be monitored and reported." >
 /etc/issue.net
 
+sed -e 's:\m:|\r|\s\|\v:)::g' /etc/issue.net
+cp gui_conf /etc/issue.net
+rm gui_conf
 }
 
 rm_services() {
