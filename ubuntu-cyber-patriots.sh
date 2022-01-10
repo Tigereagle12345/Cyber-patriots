@@ -1011,6 +1011,18 @@ then
   apt purge netcat
 fi
 
+# Remove other services
+lsof -i -P -n | grep -v "(ESTABLISHED)"
+echo "Do you want to remove any other services? Y/N"
+read -r yn
+if [[ "$yn" = "y" ]] || [[ "$yn" = "Y" ]]
+then
+ while [[ "$yn" = "y" ]] || [[ "$yn" = "Y" ]]
+ do
+  rm_service()
+ done
+fi
+
 # Secure SSH Server
 secure_ssh
 
