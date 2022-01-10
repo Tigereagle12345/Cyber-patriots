@@ -206,7 +206,7 @@ grep -Els "^\s*net\.ipv4\.ip_forward\s*=\s*1" /etc/sysctl.conf /etc/sysctl.d/*.c
 echo "IP Forwarding Disabled"
 
 log_sus_packets
-echo "Logging Suspicious Packets Enabled"
+echo "Logging of Suspicious Packets Enabled"
 
 echo "Sysctl Configured"
 }
@@ -236,6 +236,7 @@ enable_audit() {
   apt install auditd
   apt install auditd audispd-plugins
 
+# Configures Auditd Settings
 awk '/GRUB_CMDLINE_LINUX/ {print;print "GRUB_CMDLINE_LINUX="audit=1"";next}1' /etc/default/grub > auditd_conf
 cp auditd_conf /etc/default/grub
 rm auditd_conf
@@ -345,6 +346,7 @@ rm auditd_conf
 cp auditd_conf  /etc/audit/rules.d/50-module.rules
 rm auditd_conf
 
+# Configures a log file for sudo
 touch sudo_log
 sudo_log="sudo_log"
 (cat /etc/sudodoers ; echo "Defaults logfile=$sudo_log") > sudo_conf
