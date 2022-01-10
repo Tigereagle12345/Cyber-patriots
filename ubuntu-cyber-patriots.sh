@@ -206,8 +206,8 @@ grep -Els "^\s*net\.ipv4\.ip_forward\s*=\s*1" /etc/sysctl.conf /etc/sysctl.d/*.c
 echo "IP Forwarding Disabled"
 
 # Disables ipv6
-awk '/GRUB_CMDLINE_LINUX/ {print;print "GRUB_CMDLINE_LINUX="ipv6.disable=1"";next}1'  > ip_conf
-cp ip_conf
+awk '/GRUB_CMDLINE_LINUX/ {print;print "GRUB_CMDLINE_LINUX="ipv6.disable=1"";next}1' /etc/default/grub > ip_conf
+cp ip_conf /etc/default/grub
 rm ip_conf
 
 update-grub
