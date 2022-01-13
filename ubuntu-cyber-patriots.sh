@@ -397,6 +397,7 @@ echo "Rsyslog Installed and enabled"
 }
 
 crontab_conf() {
+systemctl --now enable cron
 chown root:root /etc/crontab 
 chmod og-rwx /etc/crontab
 
@@ -892,6 +893,7 @@ enable_ufw
 enable_audit
 fail2ban
 secure_pass
+crontab_conf
 daily_updates
 secure_sysctl
 disable_mounting
@@ -903,7 +905,6 @@ core_dump
 app_armour
 gui
 rsyslog
-crontab_conf
 permissions
 clamav
 
