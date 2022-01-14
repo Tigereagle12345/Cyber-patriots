@@ -863,6 +863,7 @@ sysctl -w net.ipv4.route.flush=1
 }
 
 clamav() {
+apt install clamav
 bash ./Cyber-patriots/clamav.sh &
 echo "ClamAV is being run in the background, this may take some time..."
 echo "Infected files will be moved to the directory Infected_Files"
