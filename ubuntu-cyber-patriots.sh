@@ -728,7 +728,7 @@ fi
 }
 
 aide() {
-apt install aide
+apt install aide aide-common
 bash ./Cyber-patriots/aide.sh &
 }
 
