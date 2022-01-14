@@ -188,7 +188,7 @@ cp sysctl_conf /etc/sysctl.conf
 
 rm sysctl_conf
 
-#Reloads the configuration issue
+# Reloads the configuration issue
 sysctl -p
 
 sysctl -w net.ipv4.conf.all.send_redirects=0
@@ -728,6 +728,7 @@ fi
 }
 
 aide() {
+apt install aide
 bash ./Cyber-patriots/aide.sh &
 }
 
