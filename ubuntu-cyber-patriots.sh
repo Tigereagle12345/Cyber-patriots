@@ -877,6 +877,10 @@ apt upgrade -y
 apt dist-upgrade -y
 }
 
+netstat() {
+apt install net-tools
+}
+
 ##############################################
 
 # Code
@@ -893,6 +897,7 @@ add-apt-repository multiverse
 # Installs tools
 apt install nano
 apt install tree
+netstat
 
 # Runs all Functions
 updates
