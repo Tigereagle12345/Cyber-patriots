@@ -729,7 +729,8 @@ fi
 
 aide() {
 apt install aide aide-common
-bash ./Cyber-patriots/aide.sh &
+echo "Run Aide in a different window by running command: bash ./Cyber-patriots/aide.sh"
+proceed
 }
 
 boot() {
@@ -865,8 +866,7 @@ sysctl -w net.ipv4.route.flush=1
 
 clamav() {
 apt install clamav
-bash ./Cyber-patriots/clamav.sh &
-echo "ClamAV is being run in the background, this may take some time..."
+echo "Run ClamAV in a different window by using the command: bash ./Cyber-patriots/clamav.sh"
 echo "Infected files will be moved to the directory Infected_Files"
 proceed
 }
@@ -879,6 +879,7 @@ apt dist-upgrade -y
 
 netstat() {
 apt install net-tools
+
 }
 
 ##############################################
