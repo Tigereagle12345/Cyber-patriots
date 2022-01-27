@@ -885,6 +885,11 @@ echo "$banner"
 
 echo "Programs running..."
 
+add-apt-repository main
+add-apt-repository universal
+add-apt-repository restricted
+add-apt-repository multiverse
+
 # Installs tools
 apt install nano
 apt install tree
