@@ -878,8 +878,13 @@ apt dist-upgrade -y
 }
 
 netstat() {
-apt install net-tools
-
+echo "Would you like to use netstat tools?"
+read -p yn
+if[[ "$yn" = "y" ]] || [[ "$yn" = "Y" ]]
+then
+ bash ./Cyber-patriots/netstat.sh
+ proceed
+fi
 }
 
 ##############################################
