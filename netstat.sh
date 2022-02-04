@@ -32,6 +32,7 @@ then
 elif [[ "$n" = "2"]]
 then
   touch pid_results
+  ps -A
   echo "Please enter the process name of the process you wish to find the port of"
   read -r pn
   pgrep $pn > pid_results
