@@ -46,7 +46,7 @@ then
   touch netstat_results
   netstat -ano -p tcp >> netstat_results
   head -2 netstat_results
-  grep "$pid"
+  netstat -ano -p tcp | grep "$pid" && echo "Success"
   
   rm pid_results
   rm netstat_results
