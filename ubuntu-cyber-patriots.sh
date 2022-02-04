@@ -879,8 +879,8 @@ apt dist-upgrade -y
 
 netstat() {
 echo "Would you like to use netstat tools?"
-read -p yn
-if[[ "$yn" = "y" ]] || [[ "$yn" = "Y" ]]
+read -r yn
+if [[ "$yn" = "y" ]] || [[ "$yn" = "Y" ]]
 then
  echo "Installing Netstat..."
  apt-get update
