@@ -50,13 +50,14 @@ then
   
   rm pid_results
   rm netstat_results
-fi
 
+
+ 
 elif [[ "$n" = "3" ]] || [[ "$n" = "3" ]]
 then
   echo "Exiting..."
   
-elif
-   cd ~
+else
+   cd ~ || exit
    bash ./Cyber-patriots/netstat.sh
 fi
