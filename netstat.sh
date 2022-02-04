@@ -51,3 +51,5 @@ then
   rm pid_results
   rm netstat_results
 fi
+
+echo 
