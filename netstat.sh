@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
 echo "What would you like to do?"
-echo "(1) See which proccess is using a port (2) See which port a process is using"
+echo "(1) See which proccess is using a port (2) See which port a process is using (3) Exit"
 read -r n
 if [[ "$n" = "1" ]] || [[ "$n" = "1" ]]
 then
@@ -52,4 +52,11 @@ then
   rm netstat_results
 fi
 
-echo 
+elif [[ "$n" = "3" ]] || [[ "$n" = "3" ]]
+then
+  echo "Exiting..."
+  
+elif
+   cd ~
+   bash ./Cyber-patriots/netstat.sh
+fi
