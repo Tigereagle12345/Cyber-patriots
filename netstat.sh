@@ -15,7 +15,7 @@ then
   echo "Please input the process ID"
   read -r id
   ps -p "$id"
-  echo "Do you wish to see the parent process of this process?"
+  echo "Do you wish to see the parent process of this process? Y/N"
   read -r yn
   if [[ "$yn" = "y" ]] || [[ "$yn" = "Y" ]]
   then
@@ -23,8 +23,8 @@ then
     do
       echo "Please input the process ID"
       read -r id
-      ps -p "$id"
-      echo "Do you wish to see the parent process of this process?"
+      ps -e "$id"
+      echo "Do you wish to see the parent process of this process? Y/N"
       read -r yn
     done
   fi
@@ -43,5 +43,11 @@ then
    
   done < pid_results
   echo "hi"
+  touch netstat_results
+  netstat -ano -p tcp >> netstat_results
+  head -2 netstat_results
+  grep "$pid"
+  
   rm pid_results
+  rm netstat_results
 fi
