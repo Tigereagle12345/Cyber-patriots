@@ -3,7 +3,7 @@
 echo "What would you like to do?"
 echo "(1) See which proccess is using a port (2) See which port a process is using"
 read -r n
-if [[ "$n" = "n" ]] || [[ "$n" = "N" ]]
+if [[ "$n" = "1" ]] || [[ "$n" = "1" ]]
 then
   echo "What port would you like to check?"
   read -r port
@@ -29,7 +29,7 @@ then
     done
   fi
   
-elif [[ "$n" = "n" ]] || [[ "$n" = "N" ]]
+elif [[ "$n" = "2" ]] || [[ "$n" = "2" ]]
 then
   touch pid_results
   ps -A
