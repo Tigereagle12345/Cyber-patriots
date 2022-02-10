@@ -14,20 +14,7 @@ then
   netstat -ano -p tcp | grep "$port"
   echo "Please input the process ID"
   read -r id
-  ps -p "$id"
-  echo "Do you wish to see the parent process of this process? Y/N"
-  read -r yn
-  if [[ "$yn" = "y" ]] || [[ "$yn" = "Y" ]]
-  then
-    while [[ "$yn" = "y" ]] || [[ "$yn" = "Y" ]]
-    do
-      echo "Please input the process ID"
-      read -r id
-      ps -e "$id"
-      echo "Do you wish to see the parent process of this process? Y/N"
-      read -r yn
-    done
-  fi
+  ps -q "$id" -o comm=
   
 elif [[ "$n" = "2" ]] || [[ "$n" = "2" ]]
 then
