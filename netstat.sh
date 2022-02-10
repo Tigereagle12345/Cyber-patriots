@@ -15,6 +15,8 @@ then
   echo "Please input the process ID"
   read -r id
   ps -q "$id" -o comm=
+  cd ~ || exit
+  bash ./Cyber-patriots/netstat.sh
   
 elif [[ "$n" = "2" ]] || [[ "$n" = "2" ]]
 then
@@ -26,10 +28,8 @@ then
   while IFS= read -r line
   do
    pid=${line}/
-   echo "$pid"
    
   done < pid_results
-  echo "hi"
   touch netstat_results
   netstat -ano -p tcp >> netstat_results
   head -2 netstat_results
@@ -37,6 +37,9 @@ then
   
   rm pid_results
   rm netstat_results
+  
+  cd ~ || exit
+  bash ./Cyber-patriots/netstat.sh
 
 
  
