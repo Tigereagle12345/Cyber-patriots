@@ -729,7 +729,7 @@ fi
 
 aide() {
 apt install aide aide-common
-echo "Run Aide in a different window by running command: bash ./Cyber-patriots/aide.sh"
+echo "Run Aide in a different window by running command: bash ./Cyber-patriots/Ubuntu(Assets)/aide.sh"
 proceed
 }
 
