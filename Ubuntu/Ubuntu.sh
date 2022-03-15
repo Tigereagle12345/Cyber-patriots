@@ -866,7 +866,7 @@ sysctl -w net.ipv4.route.flush=1
 
 clamav() {
 apt install clamav
-echo "Run ClamAV in a different window by using the command: bash ./Cyber-patriots/clamav.sh"
+echo "Run ClamAV in a different window by using the command: bash ./Cyber-patriots/Ubuntu/clamav.sh"
 echo "Infected files will be moved to the directory Infected_Files"
 proceed
 }
@@ -885,7 +885,7 @@ then
  echo "Installing Netstat..."
  apt-get update
  apt install net-tools
- bash ./Cyber-patriots/netstat.sh
+ bash ./Cyber-patriots/Ubuntu/netstat.sh
  proceed
 fi
 }
