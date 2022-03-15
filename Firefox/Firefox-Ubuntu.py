@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 
 import selenium
+from selenium import webdriver
+from webdriver_manager.firefox import GeckoDriverManager
+
+driver = webdriver.Firefox(executable_path=GeckoDriverManager().install())
 
 # Different types of forms
 
@@ -74,3 +78,4 @@ settings = {
 
 # Code
 
+browser.get("about:preferences#general")
