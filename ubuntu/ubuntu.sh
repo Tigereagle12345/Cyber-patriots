@@ -729,7 +729,7 @@ fi
 
 aide() {
 apt install aide aide-common
-echo "Run Aide in a different window by running command: bash ./Cyber-patriots/Ubuntu(Assets)/aide.sh"
+echo "Run Aide in a different window by running command: bash ./Cyber-patriots/ubuntu/support/aide.sh"
 proceed
 }
 
@@ -866,7 +866,7 @@ sysctl -w net.ipv4.route.flush=1
 
 clamav() {
 apt install clamav
-echo "Run ClamAV in a different window by using the command: bash ./Cyber-patriots/Ubuntu/clamav.sh"
+echo "Run ClamAV in a different window by using the command: bash ./Cyber-patriots/ubuntu/support/clamav.sh"
 echo "Infected files will be moved to the directory Infected_Files"
 proceed
 }
@@ -885,7 +885,7 @@ then
  echo "Installing Netstat..."
  apt-get update
  apt install net-tools
- bash ./Cyber-patriots/Ubuntu/netstat.sh
+ bash ./Cyber-patriots/ubuntu/support/netstat.sh
  proceed
 fi
 }
