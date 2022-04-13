@@ -890,6 +890,16 @@ then
 fi
 }
 
+firefox() {
+echo "Updating Firefox"
+apt-get update
+apt-get install firefox
+
+echo "Setting Firefox preferences..."
+./Cyber-patriots/ubuntu/firefox/main.sh
+echo "Firefox preferences set for all profiles"
+}
+
 ##############################################
 
 # Code
@@ -929,9 +939,8 @@ rsyslog
 permissions
 clamav
 
-# Updates Firefox
-apt-get update
-apt-get install firefox
+# Firefox
+firefox
 
 # Removes unwanted programs and files
 rm /etc/motd
