@@ -1,3 +1,0 @@
-echo Setting Firefox preferences...
-start %~dp0/windows/firefox/main.py/
-echo Done
