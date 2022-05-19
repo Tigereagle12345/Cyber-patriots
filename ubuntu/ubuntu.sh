@@ -891,13 +891,18 @@ fi
 }
 
 firefox() {
-echo "Updating Firefox"
-apt-get update
-apt-get install firefox
+echo "Is firefox installed? Y/N\n"
+read -r yn
+if [[ "$yn" = "y" ]] || [[ "$yn" = "Y" ]]
+then
+ echo "Updating Firefox"
+ apt-get update
+ apt-get install firefox
 
-echo "Setting Firefox preferences..."
-./Cyber-patriots/ubuntu/firefox/main.sh
-echo "Firefox preferences set for all profiles"
+ echo "Setting Firefox preferences..."
+ ./Cyber-patriots/ubuntu/firefox/main.sh
+ echo "Firefox preferences set for all profiles"
+fi
 }
 
 ##############################################
