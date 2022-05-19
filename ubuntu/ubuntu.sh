@@ -916,6 +916,7 @@ add-apt-repository multiverse
 # Installs tools
 apt install nano
 apt install tree
+apt install python3
 netstat
 
 # Runs all Functions
