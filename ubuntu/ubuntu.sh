@@ -504,72 +504,75 @@ echo "Daily Updates Added"
 
 secure_ssh() {
 # Secure SSH Server
-echo "Are you using a SSH Server? Y/N"
+echo "Will others be connecting to this device via SSH? Y/N"
 read -r yn
 if [[ "$yn" = "y" ]] || [[ "$yn" = "Y" ]]
 then
-  awk '{if($2=="#   Protocol 2,1") {$2="Protocol 2"} print $0}' /etc/ssh/ssh_config > ssh_conf
-  cp ssh_conf /etc/ssh/ssh_config
+  if [[ ! ${SSH_TTY} ]]
+  then
+    awk '{if($2=="#   Protocol 2,1") {$2="Protocol 2"} print $0}' /etc/ssh/ssh_config > ssh_conf
+    cp ssh_conf /etc/ssh/ssh_config
+   
+    awk '{if($2=="#   Protocol 2,1") {$2="Protocol 2"} print $0}' /etc/ssh/sshd_config > ssh_conf
+    cp ssh_conf /etc/ssh/sshd_config
+
+    awk '{if($2=="LoginGraceTime 600") {$2="LoginGraceTime 60"} print $0}' /etc/ssh/sshd_config > ssh_conf
+    cp ssh_conf /etc/ssh/sshd_config
+
+    awk '{if($2=="PermitRootLogin yes") {$2="PermitRootLogin no"} print $0}' /etc/ssh/sshd_config > ssh_conf
+    cp ssh_conf /etc/ssh/sshd_config
+
+    awk '{if($2=="#Port 22") {$2="Port 26"} print $0}' /etc/ssh/sshd_config > ssh_conf
+    cp ssh_conf /etc/ssh/sshd_config
+
+    (cat  /etc/ssh/sshd_config ; echo "LogLevel VERBOSE") > ssh_conf
+    cp ssh_conf /etc/ssh/sshd_config
+
+    (cat  /etc/ssh/sshd_config ; echo "X11Forwarding no") > ssh_conf
+    cp ssh_conf /etc/ssh/sshd_config
+
+    (cat  /etc/ssh/sshd_config ; echo "MaxAuthTries 4") > ssh_conf
+    cp ssh_conf /etc/ssh/sshd_config
+
+    (cat  /etc/ssh/sshd_config ; echo "IgnoreRhosts yes") > ssh_conf
+    cp ssh_conf /etc/ssh/sshd_config
+
+    (cat  /etc/ssh/sshd_config ; echo "HostbasedAuthentication no") > ssh_conf
+    cp ssh_conf /etc/ssh/sshd_config
+
+    (cat  /etc/ssh/sshd_config ; echo "PermitEmptyPasswords no") > ssh_conf
+    cp ssh_conf /etc/ssh/sshd_config
   
-  awk '{if($2=="#   Protocol 2,1") {$2="Protocol 2"} print $0}' /etc/ssh/sshd_config > ssh_conf
-  cp ssh_conf /etc/ssh/sshd_config
+    (cat  /etc/ssh/sshd_config ; echo "PermitUserEnvironment no") > ssh_conf
+    cp ssh_conf /etc/ssh/sshd_config
 
-  awk '{if($2=="LoginGraceTime 600") {$2="LoginGraceTime 60"} print $0}' /etc/ssh/sshd_config > ssh_conf
-  cp ssh_conf /etc/ssh/sshd_config
-
-  awk '{if($2=="PermitRootLogin yes") {$2="PermitRootLogin no"} print $0}' /etc/ssh/sshd_config > ssh_conf
-  cp ssh_conf /etc/ssh/sshd_config
-
-  awk '{if($2=="#Port 22") {$2="Port 26"} print $0}' /etc/ssh/sshd_config > ssh_conf
-  cp ssh_conf /etc/ssh/sshd_config
-
-  (cat  /etc/ssh/sshd_config ; echo "LogLevel VERBOSE") > ssh_conf
-  cp ssh_conf /etc/ssh/sshd_config
-
-  (cat  /etc/ssh/sshd_config ; echo "X11Forwarding no") > ssh_conf
-  cp ssh_conf /etc/ssh/sshd_config
-
-  (cat  /etc/ssh/sshd_config ; echo "MaxAuthTries 4") > ssh_conf
-  cp ssh_conf /etc/ssh/sshd_config
-
-  (cat  /etc/ssh/sshd_config ; echo "IgnoreRhosts yes") > ssh_conf
-  cp ssh_conf /etc/ssh/sshd_config
-
-  (cat  /etc/ssh/sshd_config ; echo "HostbasedAuthentication no") > ssh_conf
-  cp ssh_conf /etc/ssh/sshd_config
-
-  (cat  /etc/ssh/sshd_config ; echo "PermitEmptyPasswords no") > ssh_conf
-  cp ssh_conf /etc/ssh/sshd_config
-
-  (cat  /etc/ssh/sshd_config ; echo "PermitUserEnvironment no") > ssh_conf
-  cp ssh_conf /etc/ssh/sshd_config
-
-  /etc/init.d/ssh restart
+    /etc/init.d/ssh restart
   
-  ufw allow ssh
-  ufw allow 22
+    ufw allow ssh
+    ufw allow 22
 
-  rm ssh_conf
+    rm ssh_conf
 
-  service sshd reload
+    service sshd reload
 
-  chown root:root /etc/ssh/sshd_config
-  chmod og-rwx /etc/ssh/sshd_config
+    chown root:root /etc/ssh/sshd_config
+    chmod og-rwx /etc/ssh/sshd_config
 
-  find /etc/ssh -xdev -type f -name 'ssh_host_*_key' -exec chown root:root {} \;
-  find /etc/ssh -xdev -type f -name 'ssh_host_*_key' -exec chmod u-x,go-rwx {} \; 
+    find /etc/ssh -xdev -type f -name 'ssh_host_*_key' -exec chown root:root {} \;
+    find /etc/ssh -xdev -type f -name 'ssh_host_*_key' -exec chmod u-x,go-rwx {} \; 
 
-  find /etc/ssh -xdev -type f -name 'ssh_host_*_key.pub' -exec chmod u-x,gowx {} \; 
-  find /etc/ssh -xdev -type f -name 'ssh_host_*_key.pub' -exec chown root:root {} \; 
+    find /etc/ssh -xdev -type f -name 'ssh_host_*_key.pub' -exec chmod u-x,gowx {} \; 
+    find /etc/ssh -xdev -type f -name 'ssh_host_*_key.pub' -exec chown root:root {} \; 
 
-  echo "Generating SSH Key"
-  ssh-keygen -f ssh_key -t ecdsa -b 521 -N q^yRpNgbes2wM*xR
-  chmod go-rwx,u-wx ssh_key
-  echo "SSH Key Generated"
-  echo "SSH Key stored in ssh_key"
-  echo "SSH Key access allowed only to owner"
-  echo "SSH Key passphrase is the default script password"
-  proceed
+    echo "Generating SSH Key"
+    ssh-keygen -f ssh_key -t ecdsa -b 521 -N q^yRpNgbes2wM*xR
+    chmod go-rwx,u-wx ssh_key
+    echo "SSH Key Generated"
+    echo "SSH Key stored in ssh_key"
+    echo "SSH Key access allowed only to owner"
+    echo "SSH Key passphrase is the default script password"
+    proceed
+  fi
 fi
 }
 
