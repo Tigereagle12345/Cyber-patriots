@@ -894,7 +894,8 @@ fi
 }
 
 firefox() {
-echo "Is firefox installed? Y/N\n"
+echo "Is firefox installed? Y/N"
+echo ""
 read -r yn
 if [[ "$yn" = "y" ]] || [[ "$yn" = "Y" ]]
 then
