@@ -499,7 +499,9 @@ daily_updates() {
   echo "$daily_updates" >> daily_updates
   crontab daily_updates
   rm daily_updates
-echo "Daily Updates Added"
+  apt-get install unattended-upgrades
+  dpkg-reconfigure -plow unattended-upgrades
+  echo "Daily Updates Added"
 }
 
 secure_ssh() {
@@ -1090,6 +1092,9 @@ change_groups
 apt-get linux-image-generic
 
 apt autoremove
+apt-get autoclean
+apt upgrade
+apt update
 
 echo "This device needs to reboot to save changes"
 echo "Rebooting..."
