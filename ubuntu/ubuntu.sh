@@ -1091,10 +1091,12 @@ change_groups
 # Secures Kernel
 apt-get linux-image-generic
 
-apt autoremove
-apt-get autoclean
+sysctl -p
+
 apt upgrade
 apt update
+apt autoremove
+apt-get autoclean
 
 echo "This device needs to reboot to save changes"
 echo "Rebooting..."
