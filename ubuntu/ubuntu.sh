@@ -870,10 +870,29 @@ sysctl -w net.ipv4.route.flush=1
 }
 
 clamav() {
-apt install clamav
-echo "Run ClamAV in a different window by using the command: bash ./Cyber-patriots/ubuntu/support/clamav.sh"
+bash ./Cyber-patriots/ubuntu/support/clamav.sh
 echo "Infected files will be moved to the directory Infected_Files"
 proceed
+}
+
+rkhunter() {
+echo "Searching for rootkits..."
+bash ./Cyber-patriots/ubuntu/support/rkhunter.sh
+proceed
+}
+
+rkhunter() {
+echo "Searching for rootkits again..."
+bash ./Cyber-patriots/ubuntu/support/chkrootkit.sh
+proceed
+}
+
+antiviruse() {
+apt install clamav rkhunter chkrootkit
+apt update
+clamav
+rkhunter
+chkrootkit
 }
 
 updates() {
@@ -928,6 +947,7 @@ add-apt-repository multiverse
 apt install nano
 apt install tree
 apt install python3
+apt install synaptic ranger
 netstat
 
 # Runs all Functions
@@ -949,7 +969,7 @@ app_armour
 gui
 rsyslog
 permissions
-clamav
+antivirus
 
 # Firefox
 firefox
