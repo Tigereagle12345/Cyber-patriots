@@ -934,15 +934,15 @@ fi
 }
 
 rm_mal_programs() {
-for line in $(cat ./Cyber-patriots/ubuntu/support/programs.txt)
+while IFS= read -r line
 do
 echo "Remove $line if exists? "
 read -r yn
 if [[ "$yn" = "y" ]] || [[ "$yn" = "Y" ]]
 then
-apt-get --purge remove $line
+apt-get --purge remove "$line"
 fi
-done
+done < ./Cyber-patriots/ubuntu/support/programs.txt
 }
 
 ##############################################
