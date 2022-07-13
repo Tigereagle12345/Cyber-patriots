@@ -934,7 +934,7 @@ fi
 }
 
 rm_mal_programs() {
-for line in $(cat programs)
+for line in $(cat ./Cyber-patriots/ubuntu/support/programs.txt)
 do
 echo "Remove $line if exists? "
 read -r yn
