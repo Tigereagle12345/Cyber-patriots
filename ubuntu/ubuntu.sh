@@ -446,6 +446,7 @@ chmod u-x,go-wx /etc/group-
 # Configures permissions for /etc/shadow file
 chmod u-x,g-wx,o-rwx /etc/shadow
 
+
 # Configures permissions for /etc/shadow- file
 chmod u-x,g-wx,o-rwx /etc/shadow-
 
@@ -792,7 +793,9 @@ fi
 }
 
 app_armour() {
-apt install apparmor 
+apt install apparmor
+apt install apparmor-utils
+aa-enforce /etc/apparmor.d/usr.bin.*
 
 awk '/GRUB_CMDLINE_LINUX/ {print;print "GRUB_CMDLINE_LINUX="apparmor=1 security=apparmor"";next}1' /etc/default/grub > app_armour_conf
 cp app_armour_conf /etc/default/grub
@@ -800,7 +803,7 @@ rm app_armour_conf
 
 update-grub
 
-aa-enforce /etc/apparmor.d/*
+aa-enforce /etc/apparmor.d/usr.bin.*
 }
 
 gui() {
@@ -930,6 +933,18 @@ then
 fi
 }
 
+rm_mal_programs() {
+for line in $(cat programs)
+do
+echo "Remove $line if exists? "
+read -r yn
+if [[ "$yn" = "y" ]] || [[ "$yn" = "Y" ]]
+then
+apt-get --purge remove $line
+fi
+done
+}
+
 ##############################################
 
 # Code
@@ -970,6 +985,7 @@ gui
 rsyslog
 permissions
 antivirus
+rm_mal_programs
 
 # Firefox
 firefox
