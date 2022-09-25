@@ -580,7 +580,7 @@ fi
 }
 
 add_remove() {
-group=1
+group = "$1"
 echo "Do you want to add or remove anyone from this group?"
 read -r yn
 if [[ "$yn" = "y" ]] || [[ "$yn" = "Y" ]]
@@ -963,6 +963,7 @@ apt install nano
 apt install tree
 apt install python3
 apt install synaptic ranger
+apt install members
 netstat
 
 # Runs all Functions
@@ -1009,22 +1010,6 @@ then
     read -r add
     useradd "$add" && echo "User Added"
     echo "Do you want to add another user?"
-    read -r yn
-  done
-fi
-
-# Remove Files
-ls -A
-echo "Do you want to delete any files? Y/N"
-read -r yn
-if [[ "$yn" = "y" ]] || [[ "$yn" = "Y" ]]
-then
-  while [[ "$yn" = "y" ]] || [[ "$yn" = "Y" ]]
-  do
-    echo "What file would you like to delete?"
-    read -r delete
-    rm "$delete" && echo "File Deleted"
-    echo "Do you want to delete another file?"
     read -r yn
   done
 fi
