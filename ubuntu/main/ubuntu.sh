@@ -457,7 +457,7 @@ chmod u-x,g-wx,o-rwx /etc/gshadow
 chmod u-x,g-wx,o-rwx /etc/gshadow-
 
 # Configures permissions for the shadow group
- sed -ri 's/(^shadow:[^:]*:[^:]*:)([^:]+$)/\1/' /etc/grou
+sed -ri 's/(^shadow:[^:]*:[^:]*:)([^:]+$)/\1/' /etc/group
 
 # Disables USB's
 (cat /etc/modprobe.d/usb_storage.conf ; echo "install usb-storage /bin/true") > usb_conf
@@ -735,7 +735,7 @@ fi
 
 aide() {
 apt install aide aide-common
-echo "Run Aide in a different window by running command: bash ./Cyber-patriots/ubuntu/support/aide.sh"
+echo "Run Aide in a different window by running command: cypat-aide"
 proceed
 }
 
@@ -873,20 +873,20 @@ sysctl -w net.ipv4.route.flush=1
 }
 
 clamav() {
-bash ./Cyber-patriots/ubuntu/support/clamav.sh
+echo "Run clamav in a different window by running: cypat-clamav"
 echo "Infected files will be moved to the directory Infected_Files"
 proceed
 }
 
 rkhunter() {
 echo "Searching for rootkits..."
-bash ./Cyber-patriots/ubuntu/support/rkhunter.sh
+bash ./Cyber-patriots/ubuntu/main/support/rkhunter.sh
 proceed
 }
 
-rkhunter() {
+chkrootkit() {
 echo "Searching for rootkits again..."
-bash ./Cyber-patriots/ubuntu/support/chkrootkit.sh
+bash ./Cyber-patriots/ubuntu/main/support/chkrootkit.sh
 proceed
 }
 
@@ -912,7 +912,7 @@ then
  echo "Installing Netstat..."
  apt-get update
  apt install net-tools
- bash ./Cyber-patriots/ubuntu/support/netstat.sh
+ bash ./Cyber-patriots/ubuntu/main/support/netstat.sh
  proceed
 fi
 }
@@ -928,7 +928,7 @@ then
  apt-get install firefox
 
  echo "Setting Firefox preferences..."
- ./Cyber-patriots/ubuntu/firefox/main.sh
+ ./Cyber-patriots/ubuntu/main/firefox/main.sh
  echo "Firefox preferences set for all profiles"
 fi
 }
@@ -942,7 +942,7 @@ do
  then
   apt-get --purge remove "$line"
  fi
-done < ./Cyber-patriots/ubuntu/support/programs.txt
+done < ./Cyber-patriots/ubuntu/main/support/programs.txt
 }
 
 ##############################################
