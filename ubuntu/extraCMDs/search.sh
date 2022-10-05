@@ -3,7 +3,7 @@ if [["$1"=="-u"]]
 then
 dir = "/home/'$2'/"
 
-elif [["$1"=="-u"]]
+elif [["$1"=="-f"]]
 then
 dir = "$2"
 
