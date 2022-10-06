@@ -580,7 +580,7 @@ fi
 }
 
 add_remove() {
-group = "$1"
+group="$1"
 echo "Do you want to add or remove anyone from this group?"
 read -r yn
 if [[ "$yn" = "y" ]] || [[ "$yn" = "Y" ]]
@@ -1121,5 +1121,7 @@ apt-get autoclean
 
 echo "This device needs to reboot to save changes"
 echo "Rebooting..."
+
+proceed
 
 reboot
