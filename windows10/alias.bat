@@ -1,13 +1,17 @@
 @echo off
 REM Config ls
-DOSKEY ls=dir /B
+doskey ls=dir /B
 REM Config nano
-DOSKEY nano=notepad.exe $*
+doskey nano=notepad.exe $*
 REM Config vi
-DOSKEY vi=notepad.exe $*
+doskey vi=notepad.exe $*
 REM Config vim
-DOSKEY vim=notepad.exe $*
+doskey vim=notepad.exe $*
 REM Config cat
-DOSKEY cat=type $*
-
+doskey cat=type $*
+REM Config rm
+doskey rm=del $* && Command Completed Sucessfully!
+reg add "HKCU\Software\Microsoft\Command Processor" /v AutoRun /t REG_EXPAND_SZ /d C:\Users\eamon\Documents\CyPat-Win10\test.bat /f
 cls
+echo Microsoft Windows [Version 10.0.19043.2006]
+echo (c) Microsoft Corporation. All rights reserved.
