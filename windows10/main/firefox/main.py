@@ -14,7 +14,7 @@ file.close
         
 for item in profiles:
     os.system("cd ~")
-    os.system("cd Cyber-patriot/windows/firefox/")
+    os.system("cd Cyber-patriot/windows10/main/firefox/")
     prefs = open("user.js", "r")
     os.system("cd ~")
     os.system("cd %AppData%/Mozilla/Firefox/")
