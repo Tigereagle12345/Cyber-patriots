@@ -12,7 +12,7 @@ import os
 
 def firefox():
   print("Setting Firefox preferences...")
-  os.system("start %~dp0windowsfirefoxmain.py")
+  os.system("start %~dp0/windows10/main/firefox/main.py")
   print("Done")
   
 def banner():
