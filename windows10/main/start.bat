@@ -1,2 +1,2 @@
 @echo off
-start main.py
+start main.exe
