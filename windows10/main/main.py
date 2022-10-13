@@ -93,6 +93,38 @@ def user_management(yn_list):
   user_management_delete(yn_list)
   user_management_change(yn_list)
 
+def group_management_add(yn_list, group):
+  os.system(f"net localgroup {group}")
+  yn = str(input(f"Do you want to add any users to {group} group? Y/N "))
+  if yn in yn_list["y"]:
+    username = str(input("Username to add: "))
+    os.system(f"net localgroup {group}")
+    user_management_add(yn_list)
+      
+  elif yn in yn_list["n"]:
+    print("Ok, Moving on...")
+  
+  else:
+    print("Error: Non-Standard Input")
+
+def group_management_delete(yn_list, group):
+  os.system(f"net localgroup {group}")
+  yn = str(input(f"Do you want to remove any users from the {group} group? Y/N "))
+  if yn in yn_list["y"]:
+    username = str(input("User to remove: "))
+    os.system(f"net user {username} /delete")
+    user_management_delete(yn_list)
+      
+  elif yn in yn_list["n"]:
+    print("Ok, Moving on...")
+
+  else:
+    print("Error: Non-Standard Input")
+
+def group_management(yn_list):
+  group_management_add(yn_list, "Administrators")
+  group_management_delete(yn_list, "Administrators")
+
 banner()
 user_management(yn_list)
 firewall()
