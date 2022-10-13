@@ -8,7 +8,8 @@ import os
 #
 # Note
 #
-# This script was designed to be run as an administrator on Windows 10 and may not work if not run this way
+# This script was designed to be run as an administrator on Windows 10 and may not work if not run this way.
+# The default password for the script (The one it sets passwords as) is q^yRpNgbes2wM*xR
 
 #Define Global Variables
 
@@ -45,15 +46,46 @@ def firewall_port(off_on, port):
   else:
     print("Error: Incorrect port rule!")
 
-def user_management(yn_list):
+def user_management_add(yn_list):
+  t = True
   os.system("net user")
   yn = str(input("Do you want to add any users? Y/N "))
-  t = True
   if yn in yn_list["y"]:
     while t == True:
       username = str(input("Username to add: "))
-      password = str(input("Password to add: "))
-   elif yn in yn_list["n"]
-    
+      os.system(f"net user {username} q^yRpNgbes2wM*xR /add")
+      user_management_add(yn_list)
+      
+   elif yn in yn_list["n"]:
+      print("Ok, Moving on...")
+      t = False
+   
+  else:
+      print("Error: Non-Standard Input")
+
+def user_management_delete(yn_list):
+  t = True
+  os.system("net user")
+  yn = str(input("Do you want to remove any users? Y/N "))
+  if yn in yn_list["y"]:
+    while t == True:
+      username = str(input("User to remove: "))
+      os.system(f"net user {username} /delete")
+      user_management_delete(yn_list)
+      
+  elif yn in yn_list["n"]:
+      print("Ok, Moving on...")
+      t = False
+      
+  else:
+      print("Error: Non-Standard Input")
+
+      
+def user_management(yn_list):
+  user_management_add(yn_list)
+  user_management_delete(yn_list)
+  #user_management_change(yn_list)
+
+user_management(yn_list)
 banner()
 firefox()
