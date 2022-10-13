@@ -10,6 +10,13 @@ import os
 #
 # This script was designed to be run as an administrator on Windows 10 and may not work if not run this way
 
+#Define Global Variables
+
+yn_list = {
+"y":["Y", "y", "Yes", "YES", "yes"],
+"n":["N", "n", "No", "NO", "no"]
+}
+
 def firefox():
   print("Setting Firefox preferences...")
   os.system("start %~dp0/windows10/main/firefox/main.py")
@@ -38,5 +45,15 @@ def firewall_port(off_on, port):
   else:
     print("Error: Incorrect port rule!")
 
+def user_management(yn_list):
+  os.system("net user")
+  yn = str(input("Do you want to add any users? Y/N "))
+  t = True
+  if yn in yn_list["y"]:
+    while t == True:
+      username = str(input("Username to add: "))
+      password = str(input("Password to add: "))
+   elif yn in yn_list["n"]
+    
 banner()
 firefox()
