@@ -99,7 +99,7 @@ def group_management_add(yn_list, group):
   if yn in yn_list["y"]:
     username = str(input("Username to add: "))
     os.system(f"net localgroup {group} {username} /add")
-    user_management_add(yn_list)
+    group_management_add(yn_list, group)
       
   elif yn in yn_list["n"]:
     print("Ok, Moving on...")
@@ -113,7 +113,7 @@ def group_management_delete(yn_list, group):
   if yn in yn_list["y"]:
     username = str(input("User to remove: "))
     os.system(f"net localgroup {group} {username} /delete")
-    user_management_delete(yn_list)
+    group_management_delete(yn_list, group)
       
   elif yn in yn_list["n"]:
     print("Ok, Moving on...")
