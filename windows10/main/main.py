@@ -162,7 +162,7 @@ def new_group(yn_list):
     if con == True:
       new_group(yn_list)
   
-  elif yn = yn_list["n"]:
+  elif yn in yn_list["n"]:
     print("Ok, moving on...")
     
   else:
