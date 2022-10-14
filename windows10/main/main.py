@@ -121,7 +121,7 @@ def user_management(yn_list):
   user_management_change(yn_list)
 
 def group_management_add(yn_list, group):
-  os.system(f"net localgroup {group}")
+  os.system(f"net user && net localgroup {group}")
   yn = str(input(f"Do you want to add any users to the {group} group? Y/N "))
   if yn in yn_list["y"]:
     username = str(input("Username to add: "))
@@ -153,6 +153,6 @@ def group_management(yn_list):
   group_management_delete(yn_list, "Administrators")
 
 banner()
-user_management(yn_list)
+group_management(yn_list)
 firewall()
 firefox()
