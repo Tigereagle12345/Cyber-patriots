@@ -86,6 +86,7 @@ def user_management_add(yn_list):
   
   else:
     print("Error: Non-Standard Input")
+    user_management_add(yn_list)
 
 def user_management_delete(yn_list):
   os.system("net user")
@@ -100,6 +101,7 @@ def user_management_delete(yn_list):
 
   else:
     print("Error: Non-Standard Input")
+    user_management_delete(yn_list)
 
 def user_management_change(yn_list):
   os.system("net user")
@@ -114,6 +116,7 @@ def user_management_change(yn_list):
 
   else:
     print("Error: Non-Standard Input")
+    user_management_change(yn_list)
 
 def user_management(yn_list):
   user_management_add(yn_list)
@@ -133,6 +136,7 @@ def group_management_add(yn_list, group):
   
   else:
     print("Error: Non-Standard Input")
+    group_management_add(yn_list, group)
 
 def group_management_delete(yn_list, group):
   os.system(f"net localgroup {group}")
@@ -147,12 +151,33 @@ def group_management_delete(yn_list, group):
 
   else:
     print("Error: Non-Standard Input")
+    group_management_delete(yn_list, group)
 
-def group_management(yn_list):
-  group_management_add(yn_list, "Administrators")
-  group_management_delete(yn_list, "Administrators")
+def new_group(yn_list):
+  os.system("net localgroup")
+  yn = str(input("Would you like to edit a group? Y/N "))
+  if yn in yn_list["y"]:
+    group = str(input("What group would you like to edit? <Name> "))
+    con = group_management(yn_list, group)
+    if con == True:
+      new_group(yn_list)
+  
+  elif yn = yn_list["n"]:
+    print("Ok, moving on...")
+    
+  else:
+    print("Error: Non-Standard Input")
+    new_group(yn_list)
+
+def group_management(yn_list, group):
+  con = True
+  group_management_add(yn_list, group)
+  group_management_delete(yn_list, group)
+  return con
 
 banner()
-group_management(yn_list)
+user_management(yn_list)
+group_management(yn_list, "Administrators")
+new_group(yn_list)
 firewall()
 firefox()
