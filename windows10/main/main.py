@@ -117,11 +117,24 @@ def user_management_change(yn_list):
   else:
     print("Error: Non-Standard Input")
     user_management_change(yn_list)
+    
+def user_management_account(yn, yn_list, user):
+  if yn in yn_list["y"]:
+    yn = "yes"
+  elif yn in yn_list["n"]:
+    yn = "no"
+  else:
+    print("Error: Non-Standard Input")
+    user_management_account(yn, yn_list, user)
+    
+  os.system(f"net user {user} /active:{yn}")
 
 def user_management(yn_list):
   user_management_add(yn_list)
   user_management_delete(yn_list)
   user_management_change(yn_list)
+  user_management_account("no", yn_list, "Administrator")
+  user_management_account("no", yn_list, "Guest")
 
 def group_management_add(yn_list, group):
   os.system(f"net user && net localgroup {group}")
