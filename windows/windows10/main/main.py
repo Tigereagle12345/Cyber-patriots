@@ -192,11 +192,23 @@ def auditpol():
   os.system("auditpol /set /category:* /success:enable")
   os.system("auditpol /set /category:* /failure:enable")
 
+def password_managment():
+  os.system("wmic UserAccount set PasswordExpires=True")
+	os.system("wmic UserAccount set PasswordChangeable=True")
+	os.system("wmic UserAccount set PasswordRequired=True")
+  
+def reg_pol():
+  os.system("start reg.bat")
+
+def local_security_policy():
+  auditpol()
+  reg_pol()
+  password_management()
+
 banner()
 user_management(yn_list)
 group_management(yn_list, "Administrators")
 new_group(yn_list)
-auditpol()
+local_security_policy()
 firewall()
 firefox()
-os.system("start reg.bat")
