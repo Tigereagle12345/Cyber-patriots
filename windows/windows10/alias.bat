@@ -11,7 +11,7 @@ REM Config cat
 doskey cat=type $*
 REM Config rm
 doskey rm=del $* && Command Completed Sucessfully!
-reg add "HKCU\Software\Microsoft\Command Processor" /v AutoRun /t REG_EXPAND_SZ /d C:\Users\eamon\Documents\CyPat-Win10\test.bat /f
+reg add "HKCU\Software\Microsoft\Command Processor" /v AutoRun /t REG_EXPAND_SZ /d %~dp0\alias.bat /f
 cls
 echo Microsoft Windows [Version 10.0.19043.2006]
 echo (c) Microsoft Corporation. All rights reserved.
