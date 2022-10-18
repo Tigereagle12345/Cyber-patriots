@@ -1,6 +1,6 @@
 import os
 
-# Tigereagle12345's Cyber Patriot Script -Windows 10-
+# Tigereagle12345's Cyber Patriot Script -Windows Server 2016-
 #
 # IMPORTANT
 #
