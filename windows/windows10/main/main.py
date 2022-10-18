@@ -188,9 +188,14 @@ def group_management(yn_list, group):
   group_management_delete(yn_list, group)
   return con
 
+def auditpol():
+  os.system("auditpol /set /category:* /success:enable")
+  os.system("auditpol /set /category:* /failure:enable")
+
 banner()
 user_management(yn_list)
 group_management(yn_list, "Administrators")
 new_group(yn_list)
+auditpol()
 firewall()
 firefox()
