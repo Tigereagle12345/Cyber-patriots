@@ -16,9 +16,7 @@ for item in profiles:
     os.system("cd ~")
     os.system("cd Cyber-patriot/windows10/main/firefox/")
     prefs = open("user.js", "r")
-    os.system("cd ~")
-    os.system("cd %AppData%/Mozilla/Firefox/")
-    users = open("user.js", "a")
+    users = open("%AppData%/Mozilla/Firefox/user.js", "a")
     for line in prefs:
         users.write(line)
     prefs.close
