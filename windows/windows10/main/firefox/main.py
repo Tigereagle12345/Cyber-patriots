@@ -2,9 +2,7 @@ import os
 
 profiles = []
 
-os.system("cd ~")
-os.system("cd %AppData%/Mozilla/Firefox/")
-file = open("profiles.ini", "r")
+file = open("%AppData%/Mozilla/Firefox/profiles.ini", "r")
 for line in file:
     if "Path=" in line:
         profile_path = line.replace("Path=", "")
