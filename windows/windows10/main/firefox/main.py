@@ -21,5 +21,5 @@ for item in profiles:
 	for line in prefs:
 		users.write(line)
         
-	prefs.close
-	users.close
+	prefs.close()
+	users.close()
