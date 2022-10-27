@@ -1,11 +1,13 @@
 #!/bin/bash/
 
-home_dir = "$HOME" + "/.bashrc"
+user="${SUDO_USER:-$USER}"
 
-echo -e '\nalias cypat-run="cd ~ && bash ./Cyber-patriots/ubuntu/main/ubuntu.sh"' >> "$home_dir"
-echo -e 'alias cypat-aide="cd ~ && bash ./Cyber-patriots/ubuntu/main/support/aide.sh"' >> "$home_dir"
-echo -e 'alias cypat-clamav="cd ~ && bash ./Cyber-patriots/ubuntu/main/support/clamav.sh"' >> "$home_dir"
-echo -e 'alias cypat-search="cd ~ && bash ./Cyber-patriots/ubuntu/extraCMDs/search.sh"' >> "$home_dir"
-echo -e 'alias cypat-man="cd ~ && bash ./Cyber-patriots/ubuntu/extraCMDs/man.sh"' >> "$home_dir"
-echo -e 'alias cypat-uid="cd ~ && bash ./Cyber-patriots/ubuntu/extraCMDs/giveUID.sh"' >> "$home_dir"
+home_dir="/home/$user/.bashrc"
+
+echo -e '\nalias cypat-run="cd ~ && bash ./Cyber-patriots/ubuntu/main/ubuntu.sh>
+echo -e '\nalias cypat-aide="cd ~ && bash ./Cyber-patriots/ubuntu/main/support/>
+echo -e '\nalias cypat-clamav="cd ~ && bash ./Cyber-patriots/ubuntu/main/suppor>
+echo -e '\nalias cypat-search="cd ~ && bash ./Cyber-patriots/ubuntu/extraCMDs/s>
+echo -e '\nalias cypat-man="cd ~ && bash ./Cyber-patriots/ubuntu/extraCMDs/man.>
+echo -e '\nalias cypat-uid="cd ~ && bash ./Cyber-patriots/ubuntu/extraCMDs/give>
 echo "Done"
