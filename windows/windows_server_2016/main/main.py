@@ -1,6 +1,6 @@
 import os
 
-# Tigereagle12345's Cyber Patriot Script -Windows Server 2016-
+# Tigereagle12345's Cyber Patriot Script -Windows 10-
 #
 # IMPORTANT
 #
@@ -8,7 +8,7 @@ import os
 #
 # Note
 #
-# This script was designed to be run as an administrator on Windows Server 2016 and may not work if not run this way.
+# This script was designed to be run as an administrator on Windows 10 and may not work if not run this way.
 # The default password for the script (The one it sets passwords as) is q^yRpNgbes2wM*xR
 
 #Define Global Variables
@@ -108,6 +108,7 @@ def user_management_change(yn_list):
   yn = str(input("Do you want to change any user passwords? Y/N "))
   if yn in yn_list["y"]:
     username = str(input("User to change password: "))
+    password = str(input("New Password: "))
     os.system(f"net user {username} {password}")
     user_management_change(yn_list)
       
@@ -188,9 +189,27 @@ def group_management(yn_list, group):
   group_management_delete(yn_list, group)
   return con
 
+def auditpol():
+  os.system("auditpol /set /category:* /success:enable")
+  os.system("auditpol /set /category:* /failure:enable")
+
+def password_managment():
+  os.system("wmic UserAccount set PasswordExpires=True")
+  os.system("wmic UserAccount set PasswordChangeable=True")
+  os.system("wmic UserAccount set PasswordRequired=True")
+  
+def reg_pol():
+  os.system("start reg.bat")
+
+def local_security_policy():
+  auditpol()
+  reg_pol()
+  password_managment()
+
 banner()
 user_management(yn_list)
 group_management(yn_list, "Administrators")
 new_group(yn_list)
+local_security_policy()
 firewall()
 firefox()
