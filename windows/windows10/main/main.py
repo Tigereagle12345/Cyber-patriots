@@ -108,6 +108,7 @@ def user_management_change(yn_list):
   yn = str(input("Do you want to change any user passwords? Y/N "))
   if yn in yn_list["y"]:
     username = str(input("User to change password: "))
+    password = str(input("New Password: "))
     os.system(f"net user {username} {password}")
     user_management_change(yn_list)
       
@@ -194,8 +195,8 @@ def auditpol():
 
 def password_managment():
   os.system("wmic UserAccount set PasswordExpires=True")
-	os.system("wmic UserAccount set PasswordChangeable=True")
-	os.system("wmic UserAccount set PasswordRequired=True")
+  os.system("wmic UserAccount set PasswordChangeable=True")
+  os.system("wmic UserAccount set PasswordRequired=True")
   
 def reg_pol():
   os.system("start reg.bat")
@@ -203,7 +204,7 @@ def reg_pol():
 def local_security_policy():
   auditpol()
   reg_pol()
-  password_management()
+  password_managment()
 
 banner()
 user_management(yn_list)
