@@ -1,9 +1,9 @@
 #!/bin/bash/
-if [["$1"=="-u"]]
+if [[ "$1" == "-u" ]]
 then
 dir = "/home/'$2'/"
 
-elif [["$1"=="-f"]]
+elif [[ "$1" == "-f" ]]
 then
 dir = "$2"
 
@@ -11,7 +11,7 @@ else
 echo "Error: Invalid Input" && exit 1
 fi
 
-if [["$3"=="*"]]
+if [[ "$3" == "*" ]]
 then
 ext = "*"
 else
