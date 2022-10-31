@@ -11,7 +11,7 @@ then
 echo -e "Manual Page: cypat-clamav\n\nRuns a script that sets up and runs the Clamav Antivirus Program"
 elif [[ "$1" == "cypat-search" ]]
 then
-echo -e "Manual Page: cypat-search\n\nSearches through filesystems to find files"
+echo -e "Manual Page: cypat-search\n\nSearches through filesystems to find files. Use as cypat-search [-u/-f] [path/user] [*/extenstion]"
 elif [[ "$1" == "cypat-uid" ]]
 then
 echo -e "Manual Page: cypat-uid\n\nGrabs the UID of a user. Run the command with a username"
