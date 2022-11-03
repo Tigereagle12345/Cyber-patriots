@@ -16,7 +16,7 @@ then
   read -r id
   ps -q "$id" -o comm=
   cd ~ || exit
-  bash ./Cyber-patriots/netstat.sh
+  bash ./Cyber-patriots/main/support/netstat.sh
   
 elif [[ "$n" = "2" ]] || [[ "$n" = "2" ]]
 then
@@ -49,5 +49,5 @@ then
   
 else
    cd ~ || exit
-   bash ./Cyber-patriots/netstat.sh
+   bash ./Cyber-patriots/ubuntu/main/support/netstat.sh
 fi
