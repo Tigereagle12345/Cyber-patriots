@@ -231,8 +231,8 @@ echo "Sysctl Configured"
 
 enable_ufw() {
 # Installs, configures and enables the Linux firewall
-apt install ufw >> cypat-log.txt
-apt purge iptables-persistent >> cypat-log.txt
+apt install ufw #>> cypat-log.txt
+apt purge iptables-persistent #>> cypat-log.txt
 
 # Configures ufw loopback traffic
 ufw allow in on lo 
@@ -251,8 +251,8 @@ echo "Firewall Enabled"
 
 enable_audit() {
 # Installs auditd
-  apt install auditd >> cypat-log.txt
-  apt install auditd audispd-plugins >> cypat-log.txt
+  apt install auditd #>> cypat-log.txt
+  apt install auditd audispd-plugins #>> cypat-log.txt
 
 # Configures Auditd Settings
 awk '/GRUB_CMDLINE_LINUX/ {print;print "GRUB_CMDLINE_LINUX="audit=1"";next}1' /etc/default/grub > auditd_conf
@@ -388,7 +388,7 @@ rm auditd_conf
 
 rsyslog() {
 # Installs Rsyslog, a logging tool
-apt install rsyslog >> cypat-log.txt
+apt install rsyslog #>> cypat-log.txt
 
 # Enables Rsyslog
 systemctl --now enable rsyslog
@@ -486,7 +486,7 @@ usermod -g 0 root
 
 fail2ban() {
 # Installs and enables fail2ban
-  apt install fail2ban -y >> cypat-log.txt
+  apt install fail2ban -y #>> cypat-log.txt
   cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
   service fail2ban restart
   chkconfig --level 345 fail2ban on
@@ -497,7 +497,7 @@ daily_updates() {
 # Creates a daily crontab to run updates
   daily_updates="@daily apt update; apt upgrade -y; apt dist-upgrade -y; apt-get update; apt-get install firefox; apt-get linux-image-generic; clamav > clamav_scan_results"
   touch daily_updates
-  echo "$daily_updates" >> daily_updates
+  echo "$daily_updates" #>> daily_updates
   crontab daily_updates
   rm daily_updates
   apt-get install unattended-upgrades >> cypat-log.txt
@@ -635,8 +635,8 @@ fi
 }
 
 change_groups() {
-apt-get install members >> cypat-log.txt
-apt install members >> cypat-log.txt
+apt-get install members #>> cypat-log.txt
+apt install members #>> cypat-log.txt
 # Add or remove users in the administrators group
 group="adm"
 members $group
@@ -734,7 +734,7 @@ fi
 }
 
 aide() {
-apt install aide aide-common >> cypat-log.txt
+apt install aide aide-common #>> cypat-log.txt
 echo "Run Aide in a different window by running command: cypat-aide"
 proceed
 }
@@ -793,8 +793,8 @@ fi
 }
 
 app_armour() {
-apt install apparmor >> cypat-log.txt
-apt install apparmor-utils >> cypat-log.txt
+apt install apparmor #>> cypat-log.txt
+apt install apparmor-utils #>> cypat-log.txt
 aa-enforce /etc/apparmor.d/usr.bin.*
 
 awk '/GRUB_CMDLINE_LINUX/ {print;print "GRUB_CMDLINE_LINUX="apparmor=1 security=apparmor"";next}1' /etc/default/grub > app_armour_conf
@@ -851,7 +851,7 @@ then
     echo "What service would you like to remove?"
     read -r service
      systemctl --now mask "$service"
-    apt purge "$service" >> cypat-log.txt
+    apt purge "$service" #>> cypat-log.txt
     echo "Would you like to remove any other services? y/n"
     read -r yn
   done
@@ -891,17 +891,17 @@ proceed
 }
 
 antiviruse() {
-apt install clamav rkhunter chkrootkit >> cypat-log.txt
-apt update >> cypat-log.txt
+apt install clamav rkhunter chkrootkit #>> cypat-log.txt
+apt update #>> cypat-log.txt
 clamav
 rkhunter
 chkrootkit
 }
 
 updates() {
-apt update >> cypat-log.txt
-apt upgrade -y >> cypat-log.txt
-apt dist-upgrade -y >> cypat-log.txt
+apt update #>> cypat-log.txt
+apt upgrade -y #>> cypat-log.txt
+apt dist-upgrade -y #>> cypat-log.txt
 }
 
 netstat() {
@@ -910,8 +910,8 @@ read -r yn
 if [[ "$yn" = "y" ]] || [[ "$yn" = "Y" ]]
 then
  echo "Installing Netstat..."
- apt-get update >> cypat-log.txt
- apt install net-tools >> cypat-log.txt
+ apt-get update #>> cypat-log.txt
+ apt install net-tools #>> cypat-log.txt
  bash ./Cyber-patriots/ubuntu/main/support/netstat.sh
  proceed
 fi
@@ -924,8 +924,8 @@ read -r yn
 if [[ "$yn" = "y" ]] || [[ "$yn" = "Y" ]]
 then
  echo "Updating Firefox"
- apt-get update  >> cypat-log.txt
- apt-get install firefox >> cypat-log.txt
+ apt-get update  #>> cypat-log.txt
+ apt-get install firefox #>> cypat-log.txt
 
  echo "Setting Firefox preferences..."
  ./Cyber-patriots/ubuntu/main/firefox/main.sh
@@ -940,7 +940,7 @@ do
  read -r yn
  if [[ "$yn" = "y" ]] || [[ "$yn" = "Y" ]]
  then
-  apt-get --purge remove "$line"  >> cypat-log.txt
+  apt-get --purge remove "$line"  #>> cypat-log.txt
  fi
 done < ./Cyber-patriots/ubuntu/main/support/programs.txt
 }
@@ -953,18 +953,18 @@ echo "$banner"
 
 echo "Programs running..."
 
-add-apt-repository main >> cypat-log.txt
-add-apt-repository universal >> cypat-log.txt
-add-apt-repository restricted >> cypat-log.txt
-add-apt-repository multiverse  >> cypat-log.txt
+add-apt-repository main #>> cypat-log.txt
+add-apt-repository universal #>> cypat-log.txt
+add-apt-repository restricted #>> cypat-log.txt
+add-apt-repository multiverse  #>> cypat-log.txt
 
 # Installs tools
-apt install nano >> cypat-log.txt
-apt install tree >> cypat-log.txt
-apt install python3 >> cypat-log.txt
-apt install synaptic ranger >> cypat-log.txt
-apt install members >> cypat-log.txt
-apt-get install systemd >> cypat-log.txt
+apt install nano #>> cypat-log.txt
+apt install tree #>> cypat-log.txt
+apt install python3 #>> cypat-log.txt
+apt install synaptic ranger #>> cypat-log.txt
+apt install members #>> cypat-log.txt
+apt-get install systemd #>> cypat-log.txt
 netstat
 
 # Runs all Functions
@@ -994,7 +994,7 @@ firefox
 
 # Removes unwanted programs and files
 rm /etc/motd
-apt purge prelink  >> cypat-log.txt
+apt purge prelink  #>> cypat-log.txt
 rm_services
 
 echo "Done"
@@ -1052,12 +1052,12 @@ echo "Are you using a FTP Server? Y/N"
 read -r yn
 if [[ "$yn" = "y" ]] || [[ "$yn" = "Y" ]]
 then
-  apt update vsftpd  >> cypat-log.txt
-  apt upgrade vsftpd >> cypat-log.txt
+  apt update vsftpd  #>> cypat-log.txt
+  apt upgrade vsftpd #>> cypat-log.txt
   ufw allow ftp
 
 else
-  apt purge vsftpd >> cypat-log.txt
+  apt purge vsftpd #>> cypat-log.txt
 fi
 
 # Removes CUPS
@@ -1065,7 +1065,7 @@ echo "Are you using any print services? Y/N"
 read -r yn
 if [[ "$yn" = "n" ]] || [[ "$yn" = "N" ]]
 then
-  apt purge cups >> cypat-log.txt
+  apt purge cups #>> cypat-log.txt
 fi
 
 # Removes Samba
@@ -1073,7 +1073,7 @@ echo "Are you using Samba (A system to share files with windows)? Y/N"
 read -r yn
 if [[ "$yn" = "n" ]] || [[ "$yn" = "N" ]]
 then
-  apt purge samba >> cypat-log.txt
+  apt purge samba #>> cypat-log.txt
 fi
 
 # Removes Telnet
@@ -1081,7 +1081,7 @@ echo "Are you using Telnet? Y/N"
 read -r yn
 if [[ "$yn" = "n" ]] || [[ "$yn" = "N" ]]
 then
-  apt purge telnet >> cypat-log.txt
+  apt purge telnet #>> cypat-log.txt
 fi
 
 # Removes Netcat
@@ -1089,7 +1089,7 @@ echo "Are you using Netcat? Y/N"
 read -r yn
 if [[ "$yn" = "n" ]] || [[ "$yn" = "N" ]]
 then
-  apt purge netcat >> cypat-log.txt
+  apt purge netcat #>> cypat-log.txt
 fi
 
 # Remove other services
@@ -1111,14 +1111,14 @@ secure_ssh
 change_groups
 
 # Secures Kernel
-apt-get linux-image-generic  >> cypat-log.txt
+apt-get linux-image-generic  #>> cypat-log.txt
 
 sysctl -p
 
-apt upgrade >> cypat-log.txt
-apt update >> cypat-log.txt
-apt autoremove >> cypat-log.txt
-apt-get autoclean >> cypat-log.txt
+apt upgrade #>> cypat-log.txt
+apt update #>> cypat-log.txt
+apt autoremove #>> cypat-log.txt
+apt-get autoclean #>> cypat-log.txt
 
 echo "This device needs to reboot to save changes"
 echo "Rebooting..."
