@@ -981,7 +981,7 @@ home_dir="/home/$user/"
 file_path="$(realpath "$0")"
 name="${file_path%'Cyber-patriots'*}"
 
-mv "$name" "$home_dir"
+mv "$name/Cyber-patriots/" "$home_dir"
 
 # Run Setup Script
 bash ./support/setup.sh
