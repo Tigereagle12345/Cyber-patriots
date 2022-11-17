@@ -912,7 +912,7 @@ then
  echo "Installing Netstat..."
  apt-get update #>> cypat-log.txt
  apt install net-tools #>> cypat-log.txt
- bash ./Cyber-patriots/ubuntu/main/support/netstat.sh
+ bash ./support/netstat.sh
  proceed
 fi
 }
