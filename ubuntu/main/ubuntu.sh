@@ -967,6 +967,18 @@ apt install members #>> cypat-log.txt
 apt-get install systemd #>> cypat-log.txt
 netstat
 
+# Moves Scripts to home directory if not already there
+user="${SUDO_USER:-$USER}"
+home_dir="/home/$user/"
+
+file_path="$(realpath $0)"
+name="${file_path%'Cyber-patriots'*}"
+
+mv "$name" "$home_dir"
+
+# Run Setup Script
+bash ./support/setup.sh
+
 # Runs all Functions
 updates
 enable_ufw
