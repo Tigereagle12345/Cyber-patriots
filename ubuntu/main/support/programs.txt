@@ -27,3 +27,4 @@ john
 john-data
 hydra-gtk
 hydra
+libpcap*
