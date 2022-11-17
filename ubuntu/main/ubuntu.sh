@@ -941,6 +941,13 @@ do
  if [[ "$yn" = "y" ]] || [[ "$yn" = "Y" ]]
  then
   apt-get --purge remove "$line"  #>> cypat-log.txt
+  touch del_package_tmp.txt
+  dpkg -L "$line" | grep "$line" >> del_package_tmp.txt
+  while IFS= read -r items
+  do
+   rm -r -f "$items"
+  done < ./Cyber-patriots/ubuntu/main/del_package_tmp.txt
+  rm del_package_tmp.txt
  fi
 done < ./Cyber-patriots/ubuntu/main/support/programs.txt
 }
@@ -971,7 +978,7 @@ netstat
 user="${SUDO_USER:-$USER}"
 home_dir="/home/$user/"
 
-file_path="$(realpath $0)"
+file_path="$(realpath "$0")"
 name="${file_path%'Cyber-patriots'*}"
 
 mv "$name" "$home_dir"
