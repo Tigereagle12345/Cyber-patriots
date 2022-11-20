@@ -983,6 +983,8 @@ name="${file_path%'Cyber-patriots'*}"
 
 mv "$name/Cyber-patriots/" "$home_dir"
 
+rm -r -f "/home/$users/Cyber-patriots/windows/"
+
 # Run Setup Script
 bash ./support/setup.sh
 
