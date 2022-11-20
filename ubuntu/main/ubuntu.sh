@@ -1077,6 +1077,7 @@ then
 
 else
   apt purge vsftpd #>> cypat-log.txt
+  ufw deny ftp
 fi
 
 # Removes CUPS
