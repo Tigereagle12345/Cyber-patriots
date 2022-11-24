@@ -1,11 +1,54 @@
-# cyber-patriots
-For use of Cyber Patriots team 14-4347 only!
-Other teams using this will be directly breaking cyber patriots rules
 
-Thanks,
-Tigereagle12345
+# Cyber-patriots
 
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Overview:
+## Warning:
 
-This program contains some scripts to be used in Cyber Patriots competitions or cybersecurtity in general. There are several sections to this, a windows section, and an Ubuntu system that creates commands and runs general security scripts.
+For use of my Cyber Patriot team only and/or with my explicit permission! In the event that another Cyber Patriot team uses this script, they will be in violation of Cyber Patriot rules and may be eliminated from the competition.
+
+
+## Overview:
+
+This program contains some scripts to be used in Cyber Patriot competitions or for Cyber Securtity in general. Currently, there are small scripts built for Windows and Linux, broadly.
+
+
+## Supported OS':
+
+* Windows
+    * Windows 10 Enteprise
+    * Windows Server
+        * Windows Server 2016
+        * (Coming Soon!) Windows Server 2019
+* Linux
+    * Ubuntu
+        * Ubuntu 20.04
+        * Ubuntu 22.04
+    * (Coming Soom!) Fedora
+
+
+## TODO:
+* Ubuntu
+    - [x] Add/Delete Users
+    - [x] Manage Groups
+    - [x] Remove known malicious programs
+    - [ ] Configure Firefox
+        - [x] Write the code
+        - [ ] Test If Code Is Scored
+    - [ ] Enforce Password and Audit rules
+        - [x] Write Code
+        - [ ] Confirm that code is successfull
+        - [ ] Check if config files are the same between versions.
+            - [ ] If so, rewrite code to use preset config files
+    - [x] Configure Firewall
+    - [ ] Find, list and fix errors in the script.
+    - [ ] Fix `cypat-man` and other commands
+* Windows
+    - Basically Everything
+        - [ ] Find a good Python compiler
+        - [ ] Learn Powershell
+        - [ ] Learn Batch
+
+
+## Issues:
+- [ ] TODO: Find all errors
+- [ ] Fix UI for Y/N response, especially with group management
+- [ ] URGENT: Find the reason for passworf lockout after use of script
