@@ -51,7 +51,7 @@ This program contains some scripts to be used in Cyber Patriot competitions or f
 ## Issues:
 - [ ] TODO: Find all errors
 - [ ] Fix UI for Y/N response, especially with group management
-- [ ] URGENT: Find the reason for passworf lockout after use of script
+- [x] URGENT: Find the reason for password lockout after use of script
 ### Issue List:
 - [ ] Issue 1: Awk issue at or near =. Location, after firewall.
 - [ ] Issue 2: Module not loaded. In between Sysclt configured and Mounting Disabled.
