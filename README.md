@@ -52,3 +52,10 @@ This program contains some scripts to be used in Cyber Patriot competitions or f
 - [ ] TODO: Find all errors
 - [ ] Fix UI for Y/N response, especially with group management
 - [ ] URGENT: Find the reason for passworf lockout after use of script
+### Issue List:
+- [ ] Issue 1: Awk issue at or near =. Location, after firewall.
+- [ ] Issue 2: Module not loaded. In between Sysclt configured and Mounting Disabled.
+- [ ] Issue 3: Command grub_cfg not found. On line 743
+- [ ] Issue 4: Grep invalid range end. After line 743 and before kernal randomized
+- [ ] Issue 5: Deprecated service tally being used in function pass_lockout, switch to cracklib.
+- [ ] Issue 6: Remove Email Configuration from AuditD
