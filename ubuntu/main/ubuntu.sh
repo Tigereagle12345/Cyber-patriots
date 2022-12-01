@@ -109,11 +109,8 @@ sed -e 's/^\([a-zA-Z0-9_]*\):[^:]*:/\1:x:/' -i /etc/passwd
 
 pass_lockout() {
 # Sets a Password Lockout policy of 5 tries and 30 minutes lockout
-(cat /etc/pam.d/common-auth ; echo "auth required pam_tally2.so deny=5 onerr=fail unlock_time=1800") > lockout_conf
-cp lockout_conf /etc/pam.d/common-auth
-rm lockout_conf
-echo "Password Lockout Policy set to 5 incorrect tries and a lockout of 30 minutes"
-
+cp -v ./support/pass_lockout_conf.txt /etc/pam.d/common-auth
+echo "Password Lockout set to 5 tries and 30 minutes lockout"
 }
 
 secure_sysctl() {
