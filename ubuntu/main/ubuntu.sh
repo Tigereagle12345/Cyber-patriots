@@ -52,6 +52,10 @@ banner="
 # Functions
 
 secure_pass() {
+apt install libpam-cracklib
+cp /etc/pam.d/common-password /root/
+
+
 pass_len
 pass_age
 pass_history
