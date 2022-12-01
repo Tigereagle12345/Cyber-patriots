@@ -927,7 +927,8 @@ then
  echo "Updating Firefox"
  echo -e 'Y' | apt-get update
  echo -e 'Y' | apt-get install firefox
-
+ 
+ cd ~
  echo "Setting Firefox preferences..."
  ./Cyber-patriots/ubuntu/main/firefox/main.sh
  echo "Firefox preferences set for all profiles"
