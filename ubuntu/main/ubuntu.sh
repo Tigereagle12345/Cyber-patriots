@@ -56,7 +56,7 @@ pass_len
 pass_age
 pass_history
 pass_complex
-pass_lockout
+#pass_lockout
 pass_encrypt
 }
 
@@ -991,7 +991,7 @@ bash ./support/setup.sh
 # Runs all Functions
 updates
 enable_ufw
-enable_audit
+#enable_audit
 fail2ban
 secure_pass
 crontab_conf
