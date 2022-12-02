@@ -932,6 +932,7 @@ then
   echo "Updating Firefox"
   echo -e 'Y' | apt-get update
   echo -e 'Y' | apt-get install firefox
+  location="/snap/firefox/1635/usr/lib/firefox"
  elif [[ "$yn" = "n" ]] || [[ "$yn" = "N" ]]
  then
   snap remove firefox
