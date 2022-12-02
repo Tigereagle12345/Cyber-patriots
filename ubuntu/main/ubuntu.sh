@@ -636,17 +636,15 @@ fi
 }
 
 change_groups() {
-echo -e 'Y' | apt-get install members
-echo -e 'Y' | apt install members
 # Add or remove users in the administrators group
 group="adm"
-members $group
+awk -F':' '/$group/{print $4}' /etc/group
 echo "This is the admin group"
 add_remove "$group"
 
 # Add or remove users in the sudo group
 group="sudo"
-members $group
+awk -F':' '/$group/{print $4}' /etc/group
 echo "This is the sudo users group"
 add_remove "$group"
 
@@ -661,7 +659,7 @@ then
     echo "What group would you like to edit?"
     read -r group_to_edit
     group="$group_to_edit"
-    members "$group"
+    awk -F':' '/$group/{print $4}' /etc/group
     echo "This is the $group users group"
     add_remove "$group"
     echo "Would you like to edit another group?"
@@ -991,7 +989,6 @@ echo -e 'Y' | apt install nano
 echo -e 'Y' | apt install tree
 echo -e 'Y' | apt install python3
 echo -e 'Y' | apt install synaptic ranger
-echo -e 'Y' | apt install members
 echo -e 'Y' | apt-get install systemd
 netstat
 
