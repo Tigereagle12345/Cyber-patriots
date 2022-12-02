@@ -924,9 +924,27 @@ echo ""
 read -r yn
 if [[ "$yn" = "y" ]] || [[ "$yn" = "Y" ]]
 then
- echo "Updating Firefox"
- echo -e 'Y' | apt-get update
- echo -e 'Y' | apt-get install firefox
+ echo "Y" | apt install firefox
+ echo "Should Firefox installed as snap? "
+ read -r yn
+ if [[ "$yn" = "y" ]] || [[ "$yn" = "Y" ]]
+ then
+  echo "Updating Firefox"
+  echo -e 'Y' | apt-get update
+  echo -e 'Y' | apt-get install firefox
+ elif [[ "$yn" = "n" ]] || [[ "$yn" = "N" ]]
+ then
+  snap remove firefox
+  echo "Y" | add-apt-repository ppa:mozillateam/ppa
+  echo '
+Package: *
+Pin: release o=LP-PPA-mozillateam
+Pin-Priority: 1001
+' | sudo tee /etc/apt/preferences.d/mozilla-firefox
+  echo 'Unattended-Upgrade::Allowed-Origins:: "LP-PPA-mozillateam:${distro_codename}";' | sudo tee /etc/apt/apt.conf.d/51unattended-upgrades-firefox
+  apt install firefox
+  location=""
+ fi
  
  cd ~
  echo "Setting Firefox preferences..."
