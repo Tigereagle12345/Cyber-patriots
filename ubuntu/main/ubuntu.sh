@@ -232,8 +232,8 @@ echo "Sysctl Configured"
 
 enable_ufw() {
 # Installs, configures and enables the Linux firewall
-echo -e 'Y' | apt install ufw
-echo -e 'Y' | apt purge iptables-persistent
+apt install ufw -y
+apt purge iptables-persistent -y
 
 # Configures ufw loopback traffic
 ufw allow in on lo 
@@ -252,8 +252,8 @@ echo "Firewall Enabled"
 
 enable_audit() {
 # Installs auditd
-echo -e 'Y' | apt install auditd
-echo -e 'Y' | apt install auditd audispd-plugins
+apt install auditd -y
+apt install auditd audispd-plugins -y
   
 # Configures Auditd Settings
 awk '/GRUB_CMDLINE_LINUX/ {print;print "GRUB_CMDLINE_LINUX="audit=1"";next}1' /etc/default/grub > auditd_conf
@@ -389,7 +389,7 @@ rm auditd_conf
 
 rsyslog() {
 # Installs Rsyslog, a logging tool
-echo -e 'Y' | apt install rsyslog
+apt install rsyslog -y
 
 # Enables Rsyslog
 systemctl --now enable rsyslog
@@ -487,7 +487,7 @@ usermod -g 0 root
 
 fail2ban() {
 # Installs and enables fail2ban
-  echo -e "Y" | apt install fail2ban -y
+  apt install fail2ban -y
   cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
   service fail2ban restart
   chkconfig --level 345 fail2ban on
@@ -496,12 +496,12 @@ fail2ban() {
 
 daily_updates() {
 # Creates a daily crontab to run updates
-  daily_updates="@daily echo -e 'Y' | apt update; echo -e 'Y' | apt upgrade -y; echo -e 'Y' | apt dist-upgrade -y; echo -e 'Y' | apt-get update; echo -e 'Y' | apt-get install firefox; echo -e 'Y' | apt-get linux-image-generic; clamav > clamav_scan_results"
+  daily_updates="@daily apt update -y; apt upgrade -y; apt dist-upgrade -y; apt-get update -y; apt-get install firefox -y; apt-get linux-image-generic -y; clamav > clamav_scan_results"
   touch daily_updates
   echo "$daily_updates" #>> daily_updates
   crontab daily_updates
   rm daily_updates
-  echo -e 'Y' | apt-get install unattended-upgrades
+  apt-get install unattended-upgrades -y
   dpkg-reconfigure -plow unattended-upgrades
   echo "Daily Updates Added"
 }
@@ -733,7 +733,7 @@ fi
 }
 
 aide() {
-echo -e 'Y' | apt install aide aide-common
+apt install aide aide-common -y
 echo "Run Aide in a different window by running command: cypat-aide"
 proceed
 }
@@ -792,8 +792,8 @@ fi
 }
 
 app_armour() {
-echo -e 'Y' | apt install apparmor
-echo -e 'Y' | apt install apparmor-utils
+apt install apparmor -y
+apt install apparmor-utils -y
 aa-enforce /etc/apparmor.d/usr.bin.*
 
 awk '/GRUB_CMDLINE_LINUX/ {print;print "GRUB_CMDLINE_LINUX="apparmor=1 security=apparmor"";next}1' /etc/default/grub > app_armour_conf
@@ -849,8 +849,10 @@ then
   do
     echo "What service would you like to remove?"
     read -r service
-     systemctl --now mask "$service"
-    echo -e 'Y' | apt purge "$service"
+    systemctl --now mask "$service"
+    apt purge "$service" -y
+    apt remove "$service" -y
+    
     echo "Would you like to remove any other services? y/n"
     read -r yn
   done
@@ -890,17 +892,17 @@ proceed
 }
 
 antiviruse() {
-echo -e 'Y' | apt install clamav rkhunter chkrootkit
-echo -e 'Y' | apt update
+apt install clamav rkhunter chkrootkit -y
+apt update -y
 clamav
 rkhunter
 chkrootkit
 }
 
 updates() {
-echo -e 'Y' | apt update
-echo -e 'Y' | apt upgrade -y
-echo -e 'Y' | apt dist-upgrade -y
+apt update -y
+apt upgrade -y
+apt dist-upgrade -y
 }
 
 netstat() {
@@ -909,8 +911,8 @@ read -r yn
 if [[ "$yn" = "y" ]] || [[ "$yn" = "Y" ]]
 then
  echo "Installing Netstat..."
- echo -e 'Y' | apt-get update
- echo -e 'Y' | apt install net-tools
+ apt-get update -y
+ apt install net-tools -y
  bash ./support/netstat.sh
  proceed
 fi
@@ -922,26 +924,26 @@ echo ""
 read -r yn
 if [[ "$yn" = "y" ]] || [[ "$yn" = "Y" ]]
 then
- echo "Y" | apt install firefox
+ apt install firefox -y
  echo "Should Firefox installed as snap? "
  read -r yn
  if [[ "$yn" = "y" ]] || [[ "$yn" = "Y" ]]
  then
   echo "Updating Firefox"
-  echo -e 'Y' | apt-get update
-  echo -e 'Y' | apt-get install firefox
+  apt-get update -y
+  apt-get install firefox -y
   location="/snap/firefox/1635/usr/lib/firefox"
  elif [[ "$yn" = "n" ]] || [[ "$yn" = "N" ]]
  then
   snap remove firefox
-  echo "Y" | add-apt-repository ppa:mozillateam/ppa
+  add-apt-repository ppa:mozillateam/ppa -y
   echo '
 Package: *
 Pin: release o=LP-PPA-mozillateam
 Pin-Priority: 1001
 ' | sudo tee /etc/apt/preferences.d/mozilla-firefox
   echo 'Unattended-Upgrade::Allowed-Origins:: "LP-PPA-mozillateam:${distro_codename}";' | sudo tee /etc/apt/apt.conf.d/51unattended-upgrades-firefox
-  apt install firefox
+  apt install firefox -y
   location=""
  fi
  
@@ -959,7 +961,7 @@ do
  read -r yn
  if [[ "$yn" = "y" ]] || [[ "$yn" = "Y" ]]
  then
-  echo -e 'Y' | apt-get --purge remove "$line"
+  apt-get --purge remove "$line" -y
   touch del_package_tmp.txt
   dpkg -L "$line" | grep "$line" >> del_package_tmp.txt
   while IFS= read -r items
@@ -979,17 +981,21 @@ echo "$banner"
 
 echo "Programs running..."
 
-echo -e 'Y' | add-apt-repository main
-echo -e 'Y' | add-apt-repository universal
-echo -e 'Y' | add-apt-repository restricted
-echo -e 'Y' | add-apt-repository multiverse
+add-apt-repository main -y
+add-apt-repository universal -y
+add-apt-repository restricted -y
+add-apt-repository multiverse -y
+
+# Remove Postfix Mail Service as it kills the script.
+apt remove postfix -y
+apt purge postfix -y
 
 # Installs tools
-echo -e 'Y' | apt install nano
-echo -e 'Y' | apt install tree
-echo -e 'Y' | apt install python3
-echo -e 'Y' | apt install synaptic ranger
-echo -e 'Y' | apt-get install systemd
+apt install nano -y
+apt install tree -y
+apt install python3 -y
+apt install synaptic ranger -y
+apt-get install systemd -y
 netstat
 
 # Moves Scripts to home directory if not already there
@@ -1033,7 +1039,8 @@ firefox
 
 # Removes unwanted programs and files
 rm /etc/motd
-echo -e 'Y' | apt purge prelink
+apt purge prelink -y
+apt remove prelink -y
 rm_services
 
 echo "Done"
@@ -1091,12 +1098,12 @@ echo "Are you using a FTP Server? Y/N"
 read -r yn
 if [[ "$yn" = "y" ]] || [[ "$yn" = "Y" ]]
 then
-  echo -e 'Y' | apt update vsftpd
-  echo -e 'Y' | apt upgrade vsftpd
+  apt update vsftpd -y
+  apt upgrade vsftpd -y
   ufw allow ftp
 
 else
-  echo -e 'Y' | apt purge vsftpd
+  apt purge vsftpd -y
   ufw deny ftp
 fi
 
@@ -1105,7 +1112,7 @@ echo "Are you using any print services? Y/N"
 read -r yn
 if [[ "$yn" = "n" ]] || [[ "$yn" = "N" ]]
 then
-  echo -e 'Y' | apt purge cups
+  apt purge cups -y
 fi
 
 # Removes Samba
@@ -1113,7 +1120,7 @@ echo "Are you using Samba (A system to share files with windows)? Y/N"
 read -r yn
 if [[ "$yn" = "n" ]] || [[ "$yn" = "N" ]]
 then
-  echo -e 'Y' | apt purge samba
+  apt purge samba -y
 fi
 
 # Removes Telnet
@@ -1121,7 +1128,7 @@ echo "Are you using Telnet? Y/N"
 read -r yn
 if [[ "$yn" = "n" ]] || [[ "$yn" = "N" ]]
 then
-  echo -e 'Y' | apt purge telnet
+  apt purge telnet -y
 fi
 
 # Removes Netcat
@@ -1129,7 +1136,7 @@ echo "Are you using Netcat? Y/N"
 read -r yn
 if [[ "$yn" = "n" ]] || [[ "$yn" = "N" ]]
 then
-  echo -e 'Y' | apt purge netcat
+  apt purge netcat -y
 fi
 
 # Remove other services
@@ -1151,14 +1158,14 @@ secure_ssh
 change_groups
 
 # Secures Kernel
-echo -e 'Y' | apt-get linux-image-generic
+apt-get linux-image-generic -y
 
 sysctl -p
 
-echo -e 'Y' | apt upgrade
-echo -e 'Y' | apt update
-echo -e 'Y' | apt autoremove
-echo -e 'Y' | apt-get autoclean
+apt upgrade -y
+apt update -y
+apt autoremove -y
+apt-get autoclean -y
 
 echo "This device needs to reboot to save changes"
 echo "Rebooting..."
