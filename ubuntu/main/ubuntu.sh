@@ -638,13 +638,13 @@ fi
 change_groups() {
 # Add or remove users in the administrators group
 group="adm"
-awk -F':' '/$group/{print $4}' /etc/group
+members "$group"
 echo "This is the admin group"
 add_remove "$group"
 
 # Add or remove users in the sudo group
 group="sudo"
-awk -F':' '/$group/{print $4}' /etc/group
+members "$group"
 echo "This is the sudo users group"
 add_remove "$group"
 
@@ -659,7 +659,7 @@ then
     echo "What group would you like to edit?"
     read -r group_to_edit
     group="$group_to_edit"
-    awk -F':' '/$group/{print $4}' /etc/group
+    members "$group"
     echo "This is the $group users group"
     add_remove "$group"
     echo "Would you like to edit another group?"
@@ -996,6 +996,8 @@ apt install tree -y
 apt install python3 -y
 apt install synaptic ranger -y
 apt-get install systemd -y
+apt-get install members -y
+
 netstat
 
 # Moves Scripts to home directory if not already there
