@@ -949,7 +949,7 @@ Pin-Priority: 1001
  
  cd ~
  echo "Setting Firefox preferences..."
- ./Cyber-patriots/ubuntu/main/firefox/main.sh
+ ./Cyber-patriots/ubuntu/main/firefox/main.sh "$location"
  echo "Firefox preferences set for all profiles"
 fi
 }
