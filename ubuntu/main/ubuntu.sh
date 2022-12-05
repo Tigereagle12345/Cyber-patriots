@@ -932,7 +932,7 @@ then
   echo "Updating Firefox"
   apt-get update -y
   apt-get install firefox -y
-  location="/snap/firefox/1635/usr/lib/firefox"
+  location="/snap/firefox/1635/usr/lib/firefox/"
  elif [[ "$yn" = "n" ]] || [[ "$yn" = "N" ]]
  then
   snap remove firefox
@@ -944,7 +944,7 @@ Pin-Priority: 1001
 ' | sudo tee /etc/apt/preferences.d/mozilla-firefox
   echo 'Unattended-Upgrade::Allowed-Origins:: "LP-PPA-mozillateam:${distro_codename}";' | sudo tee /etc/apt/apt.conf.d/51unattended-upgrades-firefox
   apt install firefox -y
-  location=""
+  location="/usr/lib/firefox/"
  fi
  
  cd ~
