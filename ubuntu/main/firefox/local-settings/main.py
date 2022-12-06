@@ -9,6 +9,5 @@ my_parser.add_argument('location',
 args = my_parser.parse_args()
 location = args.location
 
-location = location+"defaults/pref/"
-
-shutil.copy("local-settings.js", location)
+shutil.copy("local-settings.js", location+"defaults/pref/")
+shutil.copy("mozilla.cfg", location)
