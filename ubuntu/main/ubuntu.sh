@@ -254,6 +254,9 @@ echo "Firewall Enabled"
 }
 
 enable_audit() {
+# Enables Audits without AuditD
+auditctl -e 1
+
 # Installs auditd
 apt install auditd -y
 apt install auditd audispd-plugins -y
