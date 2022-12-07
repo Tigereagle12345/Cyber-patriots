@@ -1129,6 +1129,9 @@ read -r yn
 if [[ "$yn" = "n" ]] || [[ "$yn" = "N" ]]
 then
   apt purge samba -y
+  apt remove samba-common samba-common-bin && sudo apt purge samba samba-common samba-common-bin
+  rm -r /var/lib/samba/printers/W32X86
+  rm -r /var/lib/samba/printers/x64
 fi
 
 # Removes Telnet
