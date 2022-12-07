@@ -235,6 +235,9 @@ enable_ufw() {
 apt install ufw -y
 apt purge iptables-persistent -y
 
+# Enables UFW
+ufw enable
+
 # Configures ufw loopback traffic
 ufw allow in on lo 
 ufw allow out on lo 
@@ -243,8 +246,8 @@ ufw deny in from 127.0.0.0/8 # ufw deny in from ::1
 ufw allow in http
 ufw allow in https
 
-ufw enable
 ufw logging on
+ufw logging full
 ufw status
 ufw status verbose
 echo "Firewall Enabled"
