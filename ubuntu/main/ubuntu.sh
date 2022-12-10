@@ -897,7 +897,7 @@ bash ./Cyber-patriots/ubuntu/main/support/chkrootkit.sh
 proceed
 }
 
-antiviruse() {
+antivirus() {
 apt install clamav rkhunter chkrootkit -y
 apt update -y
 clamav
