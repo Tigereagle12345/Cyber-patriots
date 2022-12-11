@@ -615,8 +615,7 @@ then
       done
      fi 
   
- else
-  if [[ "$add_delete" = "delete" ]] || [[ "$add_delete" = "Delete" ]]
+  elif [[ "$add_delete" = "delete" ]] || [[ "$add_delete" = "Delete" ]]
   then
     echo "Who would like to remove?"
     read -r delete
