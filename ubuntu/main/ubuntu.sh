@@ -905,13 +905,17 @@ proceed
 
 rkhunter() {
 echo "Searching for rootkits..."
-bash ./Cyber-patriots/ubuntu/main/support/rkhunter.sh
+path=$(realpath “${BASH_SOURCE:-$0}”)
+path=$(dirname $path)
+bash "$path/support/rkhunter.sh"
 proceed
 }
 
 chkrootkit() {
 echo "Searching for rootkits again..."
-bash ./Cyber-patriots/ubuntu/main/support/chkrootkit.sh
+path=$(realpath “${BASH_SOURCE:-$0}”)
+path=$(dirname $path)
+bash "$path/support/chkrootkit.sh"
 proceed
 }
 
@@ -937,7 +941,9 @@ then
  echo "Installing Netstat..."
  apt-get update -y
  apt install net-tools -y
- bash ./support/netstat.sh
+ path=$(realpath “${BASH_SOURCE:-$0}”)
+ path=$(dirname $path)
+ bash "$path/support/netstat.sh"
  proceed
 fi
 }
@@ -973,12 +979,16 @@ Pin-Priority: 1001
  
  cd ~
  echo "Setting Firefox preferences..."
- ./Cyber-patriots/ubuntu/main/firefox/main.sh "$location"
+ path=$(realpath “${BASH_SOURCE:-$0}”)
+ path=$(dirname $path)
+ bash "$path/firefox/main.sh" "$location"
  echo "Firefox preferences set for all profiles"
 fi
 }
 
 rm_mal_programs() {
+path=$(realpath “${BASH_SOURCE:-$0}”)
+path=$(dirname $path)
 while IFS= read -r line
 do
  echo "Remove $line if exists? "
@@ -991,10 +1001,10 @@ do
   while IFS= read -r items
   do
    rm -r -f "$items"
-  done < ./Cyber-patriots/ubuntu/main/del_package_tmp.txt
+  done < "$path/del_package_tmp.txt"
   rm del_package_tmp.txt
  fi
-done < ./Cyber-patriots/ubuntu/main/support/programs.txt
+done < "$path/support/programs.txt"
 }
 
 ##############################################
@@ -1036,7 +1046,9 @@ mv "$name/Cyber-patriots/" "$home_dir"
 rm -r -f "/home/$user/Cyber-patriots/windows/"
 
 # Run Setup Script
-bash ./support/setup.sh
+path=$(realpath “${BASH_SOURCE:-$0}”)
+path=$(dirname $path)
+bash "$path/support/setup.sh"
 
 # Runs all Functions
 updates
