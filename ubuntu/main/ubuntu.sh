@@ -613,28 +613,9 @@ then
         echo "Would you like to add anyone else?"
         read -r yn
       done
-    elif [[ "$add_delete" = "delete" ]] || [[ "$add_delete" = "Delete" ]]
-    then
-     echo "Who would like to remove?"
-     read -r delete
-     usermod -a -G "$group" "$delete"
-     echo "User $delete removed from $group"
-     echo "Would you like to remove anyone else?"
-     read -r yn
-     if [[ "$yn" = "y" ]] || [[ "$yn" = "Y" ]]
-     then 
-       while [[ "$yn" = "y" ]] || [[ "$yn" = "Y" ]]
-       do
-         echo "Who would like to delete?"
-         read -r delete
-         usermod -a -G "$group" "$delete"
-         echo "User $delete removed from $group"
-         echo "Would you like to remove anyone else?"
-         read -r yn
-    fi
-  fi
+     fi 
   
-else
+ else
   if [[ "$add_delete" = "delete" ]] || [[ "$add_delete" = "Delete" ]]
   then
     echo "Who would like to remove?"
