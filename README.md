@@ -30,14 +30,15 @@ This program contains some scripts to be used in Cyber Patriot competitions or f
     - [x] Add/Delete Users
     - [x] Manage Groups
     - [x] Remove known malicious programs
-    - [ ] Configure Firefox
+    - [x] Configure Firefox
         - [x] Write the code
-        - [ ] Test If Code Is Scored
+        - [x] Test If Code Is Scored
     - [ ] Enforce Password and Audit rules
         - [x] Write Code
-        - [ ] Confirm that code is successfull
-        - [ ] Check if config files are the same between versions.
-            - [ ] If so, rewrite code to use preset config files
+        - [x] Confirm that code is successfull
+        - [x] Check if config files are the same between versions.
+            - [x] If so, rewrite code to use preset config files
+        - [ ] Rewrite the password lockout using the failock module for PAM
     - [x] Configure Firewall
     - [ ] Find, list and fix errors in the script.
     - [ ] Fix `cypat-man` and other commands
@@ -50,7 +51,7 @@ This program contains some scripts to be used in Cyber Patriot competitions or f
 
 ## Issues:
 - [ ] TODO: Find all errors
-- [ ] Fix UI for Y/N response, especially with group management
+- [x] Fix UI for Y/N response, especially with group management
 - [x] URGENT: Find the reason for password lockout after use of script
 ### Issue List:
 - [ ] Issue 1: Awk issue at or near =. Location, after firewall.
@@ -58,4 +59,4 @@ This program contains some scripts to be used in Cyber Patriot competitions or f
 - [ ] Issue 3: Command grub_cfg not found. On line 743
 - [ ] Issue 4: Grep invalid range end. After line 743 and before kernal randomized
 - [ ] Issue 5: Deprecated service tally being used in function pass_lockout, switch to cracklib.
-- [ ] Issue 6: Remove Email Configuration from AuditD
+- [x] Issue 6: Remove Email Configuration from AuditD
