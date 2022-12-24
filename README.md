@@ -70,4 +70,31 @@ This program contains some scripts to be used in Cyber Patriot competitions or f
 - [ ] Issue 8: Missing operand for 'dirname'. Location, in Netstat Tools.
 - [ ] Issue 9: Command 'realpath' being given incorrect path.
 - [ ] Issue 10: Incorrect location for /support/setup.sh.
-- [ ] 
+- [ ] Issue 11: Line 499: chkconfig: command not found.
+- [ ] Issue 12: Runaway string constant "#net.ipv4. Awk near 'Bad Error Message Protection Enabled'.
+- [ ] Issue 13: Runaway string constant "net.ipv4.c Awk near 'Bad Error Message Protection Enabled' and 'SYN cookies to ensure a server avoids dropping connections when the SYN queue fills up Enabled'.
+- [ ] Issue 14: Runaway string constant "#net.ipv4. Awk near 'SYS backlog queue size increased to 2048'.
+- [ ] Issue 15: Sysctl: cannot stat /proc/sys/net/ipv4/netfilter/ip_conntrack_tcp_timeout_syn_recv: No such file or directory.
+- [ ] Issue 16: Awk: 1: unexpected character '.'. After IP Forwarding Disabled.
+- [ ] Issue 17: Line 679: install freevxfs /bin/true: No such file or directory.
+- [ ] Issue 18: Line 680: install jffs2 /bin/true: No such file or directory.
+- [ ] Issue 19: Line 681: install hfs /bin/true: No such file or directory.
+- [ ] Issue 20: Line 682: install hfsplus /bin/true: No such file or directory.
+- [ ] Issue 21: Line 683: install squashfs /bin/true: No such file or directory.
+- [ ] Issue 22: Line 684: install udf /bin/true: No such file or directory.
+- [ ] Issue 23: Line 685: install vfat /bin/true: No such file or directory.
+- [ ] Issue 24: Rmmod: ERROR: Module cramfs is not currently loaded.
+- [ ] Issue 25: Rmmod: ERROR: Module freevxfs is not currently loaded.
+- [ ] Issue 26: Rmmod: ERROR: Module jffs2 is not currently loaded.
+- [ ] Issue 27: Rmmod: ERROR: Module hfs is not currently loaded.
+- [ ] Issue 28: Rmmod: ERROR: Module hfsplus is not currently loaded.
+- [ ] Issue 29: Rmmod: ERROR: Module udf is not currently loaded.
+- [ ] Issue 30: Sed: -e expression #1, char 17: unknown option to 's'. Above Rsyslog installation.
+- [ ] Issue 31: Realpath: “./Cyber-patriots/ubuntu/main/ubuntu.sh”: No such file or directory, and dirname: missing operand in RkHunter function.
+- [ ] Issue 32: Realpath: “./Cyber-patriots/ubuntu/main/ubuntu.sh”: No such file or directory, and dirname: missing operand in ChRootkit function.
+- [ ] Issue 33: Line 1062: rm_services: command not found.
+- [ ] Issue 34: Line 559: /etc/init.d/ssh: No such file or directory. In SSH Function.
+- [ ] Issue 35: E: Invalid operation linux-image-generic. After Group Editing.
+
+
+
