@@ -885,17 +885,13 @@ proceed
 
 rkhunter() {
 echo "Searching for rootkits..."
-path=$(realpath “${BASH_SOURCE:-$0}”)
-path=$(dirname $path)
-bash "$path/support/rkhunter.sh"
+bash "$PWD/support/rkhunter.sh"
 proceed
 }
 
 chkrootkit() {
 echo "Searching for rootkits again..."
-path=$(realpath “${BASH_SOURCE:-$0}”)
-path=$(dirname $path)
-bash "$path/support/chkrootkit.sh"
+bash "$PWD/support/chkrootkit.sh"
 proceed
 }
 
@@ -921,9 +917,7 @@ then
  echo "Installing Netstat..."
  apt-get update -y
  apt install net-tools -y
- path=$(realpath “${BASH_SOURCE:-$0}”)
- path=$(dirname $path)
- bash "$path/support/netstat.sh"
+ bash "$PWD/support/netstat.sh"
  proceed
 fi
 }
@@ -957,11 +951,8 @@ Pin-Priority: 1001
   location="/usr/lib/firefox/"
  fi
  
- cd ~
  echo "Setting Firefox preferences..."
- path=$(realpath “${BASH_SOURCE:-$0}”)
- path=$(dirname $path)
- bash "$path/firefox/main.sh" "$location"
+ bash "$PWD/firefox/main.sh" "$location"
  echo "Firefox preferences set for all profiles"
 fi
 }
@@ -1026,9 +1017,7 @@ mv "$name/Cyber-patriots/" "$home_dir"
 rm -r -f "/home/$user/Cyber-patriots/windows/"
 
 # Run Setup Script
-path=$(realpath “${BASH_SOURCE:-$0}”)
-path=$(dirname $path)
-bash "$path/support/setup.sh"
+bash "$PWD/support/setup.sh"
 
 # Runs all Functions
 updates
