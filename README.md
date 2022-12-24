@@ -39,17 +39,11 @@ This program contains some scripts to be used in Cyber Patriot competitions or f
         - [x] Check if config files are the same between versions.
             - [x] If so, rewrite code to use preset config files
         - [ ] Rewrite the password lockout using the failock module for PAM
-     - [ ] Check for Issues
-         - [ ] Unable to handle repository shortcut 'univeral'.
-         - [ ] XServer unintentionally being installed. Unknown if this will cause issues.
+     - [x] Check for Issues
      - [ ] UI Issues
          - [ ] Route Apt Output to /dev/null or equivalent.
      
     - [x] Configure Firewall
-    - [ ] Find, list and fix errors in the script.
-         - [x] Find Errors
-         - [x] List Errors
-         - [ ] Fix Errors
     - [ ] Fix `cypat-man` and other commands
 * Windows
     - Basically Everything
@@ -97,3 +91,4 @@ This program contains some scripts to be used in Cyber Patriot competitions or f
 - [ ] Issue 33: Line 1062: rm_services: command not found.
 - [ ] Issue 34: Line 559: /etc/init.d/ssh: No such file or directory. In SSH Function.
 - [ ] Issue 35: E: Invalid operation linux-image-generic. After Group Editing.
+- [ ] Issue 36: Unable to handle repository shortcut 'univeral'.
