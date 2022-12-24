@@ -47,6 +47,9 @@ This program contains some scripts to be used in Cyber Patriot competitions or f
      
     - [x] Configure Firewall
     - [ ] Find, list and fix errors in the script.
+         - [x] Find Errors
+         - [x] List Errors
+         - [ ] Fix Errors
     - [ ] Fix `cypat-man` and other commands
 * Windows
     - Basically Everything
@@ -56,20 +59,19 @@ This program contains some scripts to be used in Cyber Patriot competitions or f
 
 
 ## Issues:
-- [ ] TODO: Find all errors
 - [x] Fix UI for Y/N response, especially with group management
 - [x] URGENT: Find the reason for password lockout after use of script
 ### Issue List:
 - [ ] Issue 1: Awk issue at or near =. Location, after firewall.
-- [ ] Issue 2: Module not loaded. In between Sysclt configured and Mounting Disabled.
-- [ ] Issue 3: Command grub_cfg not found. On line 743.
+- [ ] Issue 2: Module not loaded. In between Sysctl configured and Mounting Disabled.
+- [x] Issue 3: Command grub_cfg not found. On line 743.
 - [ ] Issue 4: Grep invalid range end. After line 743 and before kernal randomized.
 - [ ] Issue 5: Deprecated service tally being used in function pass_lockout, switch to cracklib.
 - [x] Issue 6: Remove Email Configuration from AuditD.
-- [ ] Issue 7: Netstat Tools using incorrect method of finding files.
-- [ ] Issue 8: Missing operand for 'dirname'. Location, in Netstat Tools.
-- [ ] Issue 9: Command 'realpath' being given incorrect path.
-- [ ] Issue 10: Incorrect location for /support/setup.sh.
+- [x] Issue 7: Netstat Tools using incorrect method of finding files.
+- [x] Issue 8: Missing operand for 'dirname'. Location, in Netstat Tools.
+- [x] Issue 9: Command 'realpath' being given incorrect path.
+- [x] Issue 10: Incorrect location for /support/setup.sh.
 - [ ] Issue 11: Line 499: chkconfig: command not found.
 - [ ] Issue 12: Runaway string constant "#net.ipv4. Awk near 'Bad Error Message Protection Enabled'.
 - [ ] Issue 13: Runaway string constant "net.ipv4.c Awk near 'Bad Error Message Protection Enabled' and 'SYN cookies to ensure a server avoids dropping connections when the SYN queue fills up Enabled'.
@@ -90,11 +92,8 @@ This program contains some scripts to be used in Cyber Patriot competitions or f
 - [ ] Issue 28: Rmmod: ERROR: Module hfsplus is not currently loaded.
 - [ ] Issue 29: Rmmod: ERROR: Module udf is not currently loaded.
 - [ ] Issue 30: Sed: -e expression #1, char 17: unknown option to 's'. Above Rsyslog installation.
-- [ ] Issue 31: Realpath: “./Cyber-patriots/ubuntu/main/ubuntu.sh”: No such file or directory, and dirname: missing operand in RkHunter function.
-- [ ] Issue 32: Realpath: “./Cyber-patriots/ubuntu/main/ubuntu.sh”: No such file or directory, and dirname: missing operand in ChRootkit function.
+- [x] Issue 31: Realpath: “./Cyber-patriots/ubuntu/main/ubuntu.sh”: No such file or directory, and dirname: missing operand in RkHunter function.
+- [x] Issue 32: Realpath: “./Cyber-patriots/ubuntu/main/ubuntu.sh”: No such file or directory, and dirname: missing operand in ChkRootkit function.
 - [ ] Issue 33: Line 1062: rm_services: command not found.
 - [ ] Issue 34: Line 559: /etc/init.d/ssh: No such file or directory. In SSH Function.
 - [ ] Issue 35: E: Invalid operation linux-image-generic. After Group Editing.
-
-
-
