@@ -109,7 +109,7 @@ sed -e 's/^\([a-zA-Z0-9_]*\):[^:]*:/\1:x:/' -i /etc/passwd
 
 pass_lockout() {
 # Sets a Password Lockout policy of 5 tries and 30 minutes lockout
-cp -v ./support/pass_lockout_conf.txt /etc/pam.d/common-auth
+cp "$PWD"support/common-auth.txt /
 echo "Password Lockout set to 5 tries and 30 minutes lockout"
 }
 
@@ -958,8 +958,8 @@ fi
 }
 
 rm_mal_programs() {
-path=$(realpath “${BASH_SOURCE:-$0}”)
-path=$(dirname $path)
+path=$(realpath "${BASH_SOURCE:-$0}")
+path=$(dirname "$path")
 while IFS= read -r line
 do
  echo "Remove $line if exists? "
