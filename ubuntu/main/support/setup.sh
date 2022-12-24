@@ -3,7 +3,7 @@
 user="${SUDO_USER:-$USER}"
 
 home_dir="/home/$user/.bashrc"
-user_home="/home/$user/"
+user_home="/home/$user"
 
 echo -e '\nalias cypat-run="cd ~ && sudo bash $user_home/Cyber-patriots/ubuntu/main/ubuntu.sh"' >> "$home_dir"
 echo -e '\nalias cypat-aide="cd ~ && bash $user_home/Cyber-patriots/ubuntu/main/support/aide.sh"' >> "$home_dir"
