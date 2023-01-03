@@ -55,6 +55,7 @@ secure_pass() {
 apt install libpam-cracklib
 cp /etc/pam.d/common-password /root/
 
+#python "$PWD"/support/passwords/main.py
 
 pass_len
 pass_age
