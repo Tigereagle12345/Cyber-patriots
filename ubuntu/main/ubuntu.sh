@@ -673,45 +673,37 @@ then
 fi
 }
 
+disable_module() {
+# Disable Modules According to CIS Benchmarks
+l_mname="$1" # set module name
+if ! modprobe -n -v "$l_mname" | grep -P -- '^\h*install\/bin\/(true|false)'; then
+ echo -e " - setting module: \"$l_mname\" to be not loadable"
+ echo -e "install $l_mname /bin/false" >> /etc/modprobe.d/"$l_mname".conf
+fi
+if lsmod | grep "$l_mname" > /dev/null 2>&1; then
+ echo -e " - unloading module \"$l_mname\""
+ modprobe -r "$l_mname"
+fi
+if ! grep -Pq -- "^\h*blacklist\h+$l_mname\b" /etc/modprobe.d/*; then
+ echo -e " - deny listing \"$l_mname\""
+ echo -e "blacklist $l_mname" >> /etc/modprobe.d/"$l_mname".conf
+fi
+}
+
 disable_mounting() {
 # Disables mounting of filesystems
-{
-echo "install cramfs /bin/true"
-"install freevxfs /bin/true"
-"install jffs2 /bin/true"
-"install hfs /bin/true"
-"install hfsplus /bin/true"
-"install squashfs /bin/true"
-"install udf /bin/true"
-"install vfat /bin/true"
-} >> filesystems_conf
-cp filesystems_conf /etc/modprobe.d/CIS.conf
-rm filesystems_conf
 
-rmmod cramfs
-rmmod freevxfs
-rmmod jffs2
-rmmod hfs
-rmmod hfsplus
-rmmod squashfs
-rmmod udf
-rmmod vfat
+disable_modules "cramfs"
+disable_modules "squashfs"
+disable_modules "udf"
+disable_modules "usb-storage"
 
-cp -v /usr/share/systemd/tmp.mount /etc/systemd/system/
+systemctl stop autofs
+systemctl mask autofs
 
-(cat  /etc/systemd/system/tmp.mount ; echo " [Mount] 
-What=tmpfs 
-Where=/tmp 
-Type=tmpfs 
-Options=mode=1777,strictatime,nosuid,nodev,noexec") > tmp_mount_conf
-cp tmp_mount_conf /etc/systemd/system/tmp.mount
-rm tmp_mount_conf
-systemctl daemon-reload
-systemctl --now enable tmp.mount 
 
-systemctl --now disable autofs
 
-  echo "Mounting Disabled"
+echo "Mounting Disabled"
 }
 
 sticky_bit() {
