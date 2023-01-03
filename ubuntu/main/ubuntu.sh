@@ -730,7 +730,6 @@ fi
 }
 
 aide() {
-apt install aide aide-common -y
 echo "Run Aide in a different window by running command: cypat-aide"
 proceed
 }
@@ -971,6 +970,13 @@ do
 done < "$path/support/programs.txt"
 }
 
+bootloader() {
+encrypt=$(echo -e "q^yRpNgbes2wM*xR\nq^yRpNgbes2wM*xR" || grub-mkpasswd-pbkdf2)
+username=${SUDO_USER:-$USER}
+echo -e "set superusers=$username
+password_pbkdf2 $username $encrypt"
+}
+
 ##############################################
 
 # Code
@@ -1025,6 +1031,7 @@ disable_mounting
 sticky_bit
 aide
 boot
+bootloader
 aslr
 core_dump
 app_armour
