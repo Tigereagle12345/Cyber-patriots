@@ -471,7 +471,7 @@ sed -ri 's/(^shadow:[^:]*:[^:]*:)([^:]+$)/\1/' /etc/group
 chown root:root $(readlink -e /etc/issue)
 chmod u-x,go-wx $(readlink -e /etc/issue
 chown root:root $(readlink -e /etc/issue.net)
-cmod u-x,go-wx $(readlink -e /etc/issue.net)
+chmod u-x,go-wx $(readlink -e /etc/issue.net)
 
 # Disables USB's
 (cat /etc/modprobe.d/usb_storage.conf ; echo "install usb-storage /bin/true") > usb_conf
