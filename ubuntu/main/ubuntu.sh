@@ -467,6 +467,12 @@ chmod u-x,g-wx,o-rwx /etc/gshadow-
 # Configures permissions for the shadow group
 sed -ri 's/(^shadow:[^:]*:[^:]*:)([^:]+$)/\1/' /etc/group
 
+# Configures permissions for the /etc/issue and /etc/issue.net files
+chown root:root $(readlink -e /etc/issue)
+chmod u-x,go-wx $(readlink -e /etc/issue
+chown root:root $(readlink -e /etc/issue.net)
+cmod u-x,go-wx $(readlink -e /etc/issue.net)
+
 # Disables USB's
 (cat /etc/modprobe.d/usb_storage.conf ; echo "install usb-storage /bin/true") > usb_conf
 cp usb_conf /etc/modprobe.d/usb_storage.conf
@@ -798,7 +804,7 @@ rm app_armour_conf
 
 update-grub
 
-aa-enforce /etc/apparmor.d/usr.bin.*
+aa-enforce /etc/apparmor.d/*
 }
 
 gui() {
@@ -978,6 +984,8 @@ username=${SUDO_USER:-$USER}
 echo -e "set superusers=$username\npassword_pbkdf2 $username grub$encrypt" > /etc/grub.d/50_custom
 update-grub
 
+chown root:root /boot/grub/grub.cfg
+chmod u-wx,go-rwx /boot/grub/grub.cfg
 }
 
 ##############################################
@@ -1049,8 +1057,10 @@ firefox
 
 # Removes unwanted programs and files
 rm /etc/motd
+prelink -ua
 apt purge prelink -y
 apt remove prelink -y
+apt purge apport
 rm_services
 
 echo "Done"
