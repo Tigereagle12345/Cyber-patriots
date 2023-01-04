@@ -971,10 +971,13 @@ done < "$path/support/programs.txt"
 }
 
 bootloader() {
-encrypt=$(echo -e "q^yRpNgbes2wM*xR\nq^yRpNgbes2wM*xR" || grub-mkpasswd-pbkdf2)
+touch /etc/grub.d/50_custom
+encrypt=$(echo -e "q^yRpNgbes2wM*xR\nq^yRpNgbes2wM*xR" | grub-mkpasswd-pbkdf2)
+encrypt=${encrypt##*grub}
 username=${SUDO_USER:-$USER}
-echo -e "set superusers=$username
-password_pbkdf2 $username $encrypt"
+echo -e "set superusers=$username\npassword_pbkdf2 $username grub$encrypt" > /etc/grub.d/50_custom
+update-grub
+
 }
 
 ##############################################
