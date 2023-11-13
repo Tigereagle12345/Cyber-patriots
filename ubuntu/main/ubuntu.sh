@@ -468,10 +468,10 @@ chmod u-x,g-wx,o-rwx /etc/gshadow-
 sed -ri 's/(^shadow:[^:]*:[^:]*:)([^:]+$)/\1/' /etc/group
 
 # Configures permissions for the /etc/issue and /etc/issue.net files
-chown root:root $(readlink -e /etc/issue)
-chmod u-x,go-wx $(readlink -e /etc/issue
-chown root:root $(readlink -e /etc/issue.net)
-chmod u-x,go-wx $(readlink -e /etc/issue.net)
+chown root:root "$(readlink -e /etc/issue)"
+chmod u-x,go-wx "$(readlink -e /etc/issue)"
+chown root:root "$(readlink -e /etc/issue.net)"
+chmod u-x,go-wx "$(readlink -e /etc/issue.net)"
 
 # Disables USB's
 (cat /etc/modprobe.d/usb_storage.conf ; echo "install usb-storage /bin/true") > usb_conf
